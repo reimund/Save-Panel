@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<asf locale="sv_SE" version="1.0" xmlns="http://ns.adobe.com/asf">
+  <str name="Configurator/Attribute/showNavBar/value###3" translate="yes">
+    <val>false</val>
+  </str>
+  <str name="Configurator/Attribute/visible/value###6" translate="yes">
+    <val>True</val>
+  </str>
+  <str name="Configurator/Attribute/visible/value###9" translate="yes">
+    <val>True</val>
+  </str>
+  <str name="Configurator/Container/Canvas/desc" translate="yes">
+    <val/>
+  </str>
+  <str name="Configurator/key_###4" translate="yes">
+    <val>savepanel.html</val>
+  </str>
+  <str name="Configurator/key_###5" translate="yes">
+    <val/>
+  </str>
+  <str name="Configurator/key_###7" translate="yes">
+    <val/>
+  </str>
+  <str name="Configurator/key_###8" translate="yes">
+    <val/>
+  </str>
+  <str name="Configurator/Widget/HTML/backwardToolTip" translate="yes">
+    <val>Gå tillbaka till föregående sida</val>
+  </str>
+  <str name="Configurator/Widget/HTML/browseListToolTip" translate="yes">
+    <val>Visa historiklista</val>
+  </str>
+  <str name="Configurator/Widget/HTML/desc" translate="yes">
+    <val>HTML</val>
+  </str>
+  <str name="Configurator/Widget/HTML/escCloseText" translate="yes">
+    <val>Tryck på Esc för att stänga</val>
+  </str>
+  <str name="Configurator/Widget/HTML/forwardToolTip" translate="yes">
+    <val>Gå till nästa sida</val>
+  </str>
+  <str name="Configurator/Widget/HTML/homeText" translate="yes">
+    <val>Hem</val>
+  </str>
+  <str name="Configurator/Widget/HTML/loadingText" translate="yes">
+    <val>Ansluter...</val>
+  </str>
+  <str name="Configurator/Widget/HTML/locationTextToolTip" translate="yes">
+    <val>Ange en URL och tryck på Enter för att gå till den URL:en</val>
+  </str>
+  <str name="Configurator/Widget/HTML/netUnAvailablePromptDetail" translate="yes">
+    <val>Kontrollera att datorn är ansluten till Internet och att dina inställningar tillåter att tjänster ansluts till Internet, och kontrollera att den begärda URL:en {0} är tillgänglig.</val>
+  </str>
+  <str name="Configurator/Widget/HTML/netUnAvailablePromptTitle" translate="yes">
+    <val>Ingen Internetanslutning hittades eller den begärda adressen hittades inte.</val>
+  </str>
+  <str name="Configurator/Widget/HTML/offlinePromptDetail" translate="yes">
+    <val>Innan du fortsätter, se till att du är ansluten till Internet och att dina inställningar tillåter att tjänsterna ansluter till Internet.</val>
+  </str>
+  <str name="Configurator/Widget/HTML/offlinePromptTitle" translate="yes">
+    <val>Ingen Internetanslutning hittades</val>
+  </str>
+  <str name="Configurator/Widget/HTML/reloadLabel" translate="yes">
+    <val>Ladda om</val>
+  </str>
+  <str name="Configurator/Widget/HTML/reloadText" translate="yes">
+    <val>Klicka för att testa anslutning</val>
+  </str>
+</asf>
