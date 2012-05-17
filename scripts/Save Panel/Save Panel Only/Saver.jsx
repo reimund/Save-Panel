@@ -11,7 +11,7 @@ var Saver = function() { }
  */
 Saver.prototype.save = function(options)
 {
-	var format_options, name, dir, path;
+	var format_options, name, current_file_dir, rel_dest, path, ext;
 
 	if (0 == documents.length)
 		return;
@@ -21,16 +21,22 @@ Saver.prototype.save = function(options)
 		'psd': this.get_psd_save_options()
 	};
 
-	dir = new File(activeDocument.fullName).parent;
+	current_file_dir = new File(activeDocument.fullName).parent;
+	ext = extension(activeDocument.fullName.name)[1];
 	name = basename(activeDocument.name);
 
-	if (options.type == 'normal')
-		path = dir + '/jpeg/full/' + name;
+	rel_dest = ext == 'psd'
+		? '/../jpeg/full/' : '/jpeg/full/';
+		
+
+	if (options.type == 'normal' && options.format == 'jpg')
+		path = current_file_dir + rel_dest + name;
+	else if (options.format == 'psd')
+		path = current_file_dir + '/psd/' + name;
 	else
-		path = dir + '/jpeg/full/' + name + '_bw';
+		path = current_file_dir + rel_dest + name + '_bw';
 
-	activeDocument.saveAs(new File(path), format_options['jpg'], true, Extension.LOWERCASE);
-
+	activeDocument.saveAs(new File(path), format_options[options.format], true, Extension.LOWERCASE);
 }
 
 
@@ -59,11 +65,20 @@ Saver.prototype.get_psd_save_options = function()
 
 
 /**
- * Strips the extension of filename string.
+ * Strips the extension of a filename string.
  */
 function basename(file)
 {
 	return file.replace(/\.[^\..]+$/, '');
+}
+
+
+/**
+ * Gets the extension part of the specified filename string.
+ */
+function extension(file)
+{
+	return file.match(/\.([^\..]+)$/);
 }
 
 
