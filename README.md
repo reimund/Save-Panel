@@ -21,7 +21,7 @@ Features
 -	Save jpeg with 820px width in ./jpeg/820/[basename]_bw.jpg
 -	Save jpeg with 920px width in ./jpeg/920/[basename].jpg
 -	Save jpeg with 920px width in ./jpeg/920/[basename]_bw.jpg
--	Save psd in ./psd/<basename>.psd
+-	Save psd in ./psd/[basename].psd
 
 
 Installation
