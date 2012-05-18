@@ -11,32 +11,49 @@ var Saver = function() { }
  */
 Saver.prototype.save = function(options)
 {
-	var format_options, name, current_file_dir, rel_dest, path, ext;
+	var doc, format_options, name, current_file_dir, rel_dest, path, ext;
 
 	if (0 == documents.length)
 		return;
 
+	if (undefined == options.suffix)
+		options.suffix = '';
+
 	format_options = {
 		'jpg': this.get_jpeg_save_options(),
-		'psd': this.get_psd_save_options()
+		'psd': this.get_psd_save_options(),
+		'webjpg': this.get_sfw_save_options()
 	};
 
-	current_file_dir = new File(activeDocument.fullName).parent;
-	ext = extension(activeDocument.fullName.name)[1];
-	name = basename(activeDocument.name);
+	doc = activeDocument;
+	current_file_dir = new File(doc.fullName).parent;
+	ext = extension(doc.fullName.name)[1];
+	name = basename(doc.name);
+
 
 	rel_dest = ext == 'psd'
-		? '/../jpeg/full/' : '/jpeg/full/';
-		
-
-	if (options.type == 'normal' && options.format == 'jpg')
-		path = current_file_dir + rel_dest + name;
+		? '/../jpeg/' + options.size  + '/' : '/jpeg/' + options.size + '/';
+	
+	if (ext == 'psd')
+		rel_dest = '/../jpeg/' + options.size + '/';
 	else if (options.format == 'psd')
-		path = current_file_dir + '/psd/' + name;
+		rel_dest = '/psd/';
 	else
-		path = current_file_dir + rel_dest + name + '_bw';
+		rel_dest = '/jpeg/' + options.size + '/';
 
-	activeDocument.saveAs(new File(path), format_options[options.format], true, Extension.LOWERCASE);
+	// Resize if needed.
+	if (options.size != 'full') {
+		doc.flatten();
+		doc.resizeImage(Number(options.size), null, null, ResampleMethod.BICUBIC);
+	}
+		
+	// Target path.
+	path = current_file_dir + rel_dest + name + options.suffix;
+	
+	if (options.format == 'webjpg')
+		doc.exportDocument(new File(path + '.jpg'), ExportType.SAVEFORWEB, format_options[options.format]);
+	else
+		doc.saveAs(new File(path), format_options[options.format], true, Extension.LOWERCASE);
 }
 
 
@@ -60,6 +77,17 @@ Saver.prototype.get_psd_save_options = function()
 	options.annotations = true;
 	options.alphaChannels = true;
 	options.spotColors = true;
+	return options;
+}
+
+
+
+Saver.prototype.get_sfw_save_options = function()
+{
+	var options = new ExportOptionsSaveForWeb();
+	options.format = SaveDocumentType.JPEG;
+	options.includeProfile = true;
+	options.quality = 80;
 	return options;
 }
 

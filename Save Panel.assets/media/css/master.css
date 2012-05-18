@@ -1,5 +1,5 @@
 body {
-	margin: 18px 12px 12px 12px;
+	margin: 8px 12px 12px 12px;
 	background: #535353;
 	overflow: hidden;
 }
@@ -10,7 +10,10 @@ div.actions {
 	margin: 0 auto 0 auto;
 }
 
-div.actions span.button { margin: 0 0 0 0; }
+div.actions span.button {
+	width: 60px;
+	margin: 0 0 0 0;
+}
 
 div.actions div {
 	text-align: left;
@@ -18,12 +21,11 @@ div.actions div {
 }
 
 div.actions div.options { margin-top: 15px; }
-div.actions span.button { width: 85px; }
 div.actions span.button.options { width: auto; }
 
 p {
 	color: #e7e7e7;
-	margin: 0 0 5px 5px;
+	margin: 10px 0 5px 0;
 	font-size: 10px;
 }
 
@@ -42,20 +44,15 @@ span.button {
 }
 
 span.button .inner {
+	width: 57px;
+	text-align: center;
 	display: inline-block;
 	background: url(../img/button.png) left top no-repeat;
 	height: 16px;
-	padding: 6px 2px 4px 10px;
+	padding: 6px 2px 4px 2px;
 }
 
 span.button a.icon { display: inline-block; }
-span.button.l { background: url(../img/buttonl.png) right top no-repeat; }
-
-span.button.l span {
-	background: url(../img/buttonl.png) left top no-repeat;
-	height: 38px;
-	padding: 0;
-}
 
 span.button a {
 	text-decoration: none;
@@ -84,15 +81,7 @@ a { color: #e7e7e7; }
 	line-height: 0;
 }
 
-span.button a.icon { padding: 0 6px 5px 18px; }
-
-span.button.l a.icon {
-	width: 25px;
-	height: 25px;
-	padding: 5px 6px 5px 6px;
-	background-position: 50% 50%;
-}
-
+/*span.button a.icon { padding: 0 6px 5px 18px; }*/
 
 div.slider-container {
 	margin: 5px 0 5px 0;
