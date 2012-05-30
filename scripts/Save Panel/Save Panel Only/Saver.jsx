@@ -47,6 +47,18 @@ Saver.prototype.save = function(options)
 		doc.resizeImage(Number(options.size), null, null, ResampleMethod.BICUBIC);
 	}
 		
+	// Create directories
+	if (options.format == 'psd') {
+		if (!(psd_folder = new Folder(current_file_dir + '/psd')).exists) {
+			psd_folder.create();
+		}
+	} else {
+		if (!(jpeg_folder = new Folder(current_file_dir + '/jpeg')).exists)
+			jpeg_folder.create();
+		if (!(size_folder = new Folder(current_file_dir + rel_dest)).exists)
+			size_folder.create();
+	}
+		
 	// Target path.
 	path = current_file_dir + rel_dest + name + options.suffix;
 	
