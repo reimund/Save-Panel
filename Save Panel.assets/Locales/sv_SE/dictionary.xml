@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <asf locale="sv_SE" version="1.0" xmlns="http://ns.adobe.com/asf">
+  <str name="Configurator/ActionScript/Script/desc###35" translate="yes">
+    <val>Kör JavaScript</val>
+  </str>
+  <str name="Configurator/ActionScript/Script/desc###38" translate="yes">
+    <val>Kör JavaScript</val>
+  </str>
+  <str name="Configurator/ActionScript/Script/desc###41" translate="yes">
+    <val>Kör JavaScript</val>
+  </str>
+  <str name="Configurator/ActionScript/Script/desc###44" translate="yes">
+    <val>Kör JavaScript</val>
+  </str>
+  <str name="Configurator/ActionScript/Script/desc###47" translate="yes">
+    <val>Kör JavaScript</val>
+  </str>
+  <str name="Configurator/ActionScript/Script/desc###50" translate="yes">
+    <val>Kör JavaScript</val>
+  </str>
+  <str name="Configurator/ActionScript/Script/desc###53" translate="yes">
+    <val>Kör JavaScript</val>
+  </str>
+  <str name="Configurator/ActionScript/Script/name###34" translate="yes">
+    <val>Psd</val>
+  </str>
+  <str name="Configurator/ActionScript/Script/name###37" translate="yes">
+    <val>920 bw</val>
+  </str>
+  <str name="Configurator/ActionScript/Script/name###40" translate="yes">
+    <val>Full</val>
+  </str>
+  <str name="Configurator/ActionScript/Script/name###43" translate="yes">
+    <val>Full bw</val>
+  </str>
+  <str name="Configurator/ActionScript/Script/name###46" translate="yes">
+    <val>820</val>
+  </str>
+  <str name="Configurator/ActionScript/Script/name###49" translate="yes">
+    <val>920</val>
+  </str>
+  <str name="Configurator/ActionScript/Script/name###52" translate="yes">
+    <val>820 bw</val>
+  </str>
   <str name="Configurator/Attribute/showNavBar/value###3" translate="yes">
     <val>false</val>
   </str>
+  <str name="Configurator/Attribute/visible/value###36" translate="yes">
+    <val>True</val>
+  </str>
+  <str name="Configurator/Attribute/visible/value###39" translate="yes">
+    <val>True</val>
+  </str>
+  <str name="Configurator/Attribute/visible/value###42" translate="yes">
+    <val>True</val>
+  </str>
+  <str name="Configurator/Attribute/visible/value###45" translate="yes">
+    <val>True</val>
+  </str>
+  <str name="Configurator/Attribute/visible/value###48" translate="yes">
+    <val>True</val>
+  </str>
+  <str name="Configurator/Attribute/visible/value###51" translate="yes">
+    <val>True</val>
+  </str>
+  <str name="Configurator/Attribute/visible/value###54" translate="yes">
+    <val>True</val>
+  </str>
+  <str name="Configurator/Attribute/visible/value###55" translate="yes">
+    <val>True</val>
+  </str>
+  <str name="Configurator/Attribute/visible/value###58" translate="yes">
+    <val>True</val>
+  </str>
   <str name="Configurator/Attribute/visible/value###6" translate="yes">
+    <val>True</val>
+  </str>
+  <str name="Configurator/Attribute/visible/value###60" translate="yes">
     <val>True</val>
   </str>
   <str name="Configurator/Attribute/visible/value###9" translate="yes">
@@ -18,11 +90,29 @@
   <str name="Configurator/key_###5" translate="yes">
     <val/>
   </str>
+  <str name="Configurator/key_###56" translate="yes">
+    <val>Save Psd</val>
+  </str>
+  <str name="Configurator/key_###59" translate="yes">
+    <val><![CDATA[Save Jpeg]]></val>
+  </str>
+  <str name="Configurator/key_###61" translate="yes">
+    <val>Save Psd</val>
+  </str>
   <str name="Configurator/key_###7" translate="yes">
     <val/>
   </str>
   <str name="Configurator/key_###8" translate="yes">
     <val/>
+  </str>
+  <str name="Configurator/watermark/htmlText" translate="yes">
+    <val>Skapad av &lt;a href='http://lumens.se/tychpanel/' target='_blank'&gt;Reimund Trost&lt;/a&gt; med &lt;a href='http://labs.adobe.com/technologies/configurator/' target='_blank'&gt;Configurator&lt;/a&gt;</val>
+  </str>
+  <str name="Configurator/watermark/width" translate="yes">
+    <val>197</val>
+  </str>
+  <str name="Configurator/watermark/x" translate="yes">
+    <val>3</val>
   </str>
   <str name="Configurator/Widget/HTML/backwardToolTip" translate="yes">
     <val>Gå tillbaka till föregående sida</val>
@@ -65,5 +155,11 @@
   </str>
   <str name="Configurator/Widget/HTML/reloadText" translate="yes">
     <val>Klicka för att testa anslutning</val>
+  </str>
+  <str name="Configurator/Widget/Text/desc" translate="yes">
+    <val/>
+  </str>
+  <str name="Configurator/Widget/Text/desc###57" translate="yes">
+    <val/>
   </str>
 </asf>
