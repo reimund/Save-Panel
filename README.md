@@ -1,7 +1,7 @@
 Save Panel
 ==========
 
-Version 0.0.3 - Wed 16 May 2012
+Version 0.1.0 - Fri 5 Oct 2012
 
 by Reimund Trost <reimund@code7.se> 
 Website <http://lumens.se/savepanel/>
@@ -34,6 +34,20 @@ directory>/Plug-ins/Panels__.
 
 Changelog
 =========
-* 0.0.3 Added buttons for 820/920 sizes.
-* 0.0.2 Psd support.
-* 0.0.1 Save full sized jpeg with/without bw suffix.
+
+0.1.0
+-----
+- Added icon.
+- Made CS6 panel match the default (dark) theme of PS CS6.
+
+0.0.3
+-----
+- Added buttons for 820/920 sizes.
+
+0.0.2
+-----
+- Psd support.
+
+0.0.1
+-----
+- Save full sized jpeg with/without bw suffix.
