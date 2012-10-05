@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<gpc defaultLocale="sv_SE" version="3" keySequence="33" currentLocale="sv_SE">
+<gpc defaultLocale="sv_SE" version="3" keySequence="61" currentLocale="sv_SE">
   <product appid="PHSP" version="13" name="Photoshop CS6"/>
   <target id="PHSP-13"/>
-  <ConfiguratorPanel name="Save Panel" width="200" height="140" init="doInit" close="doClose" persistent="False">
+  <ConfiguratorPanel name="Save Panel" width="210" height="180" init="doInit" close="doClose" persistent="False" extensionId="com.configurator.extension" extensionVersion="1.0.0" menuName="Save Panel" maxWidth="210" maxHeight="180" normalIcon="res/res1_icon.png" darkNormalIcon="res/res2_icon.png">
+    <extensionDescription><![CDATA[]]></extensionDescription>
+    <extensionAuthor><![CDATA[Reimund Trost]]></extensionAuthor>
     <onInit><![CDATA[]]></onInit>
     <aboutBox><![CDATA[]]></aboutBox>
     <onClose><![CDATA[]]></onClose>
@@ -14,10 +16,69 @@
         <param id="onClose"/>
       </function>
     </eventListeners>
-    <canvas _itemId="container_canvas" toolTip="$$$/Configurator/Container/Canvas/desc" label="$$$/Configurator/key_###8" width="198" height="205" cfgVisible="$$$/Configurator/Attribute/visible/value###9" x="0" y="0" top="0" bottom="0" left="0" right="0">
-      <html _itemId="widget_html" toolTip="$$$/Configurator/Widget/HTML/desc" backwardToolTip="$$$/Configurator/Widget/HTML/backwardToolTip" forwardToolTip="$$$/Configurator/Widget/HTML/forwardToolTip" browseListToolTip="$$$/Configurator/Widget/HTML/browseListToolTip" locationTextToolTip="$$$/Configurator/Widget/HTML/locationTextToolTip" offlinePromptTitle="$$$/Configurator/Widget/HTML/offlinePromptTitle" offlinePromptDetail="$$$/Configurator/Widget/HTML/offlinePromptDetail" netUnAvailablePromptTitle="$$$/Configurator/Widget/HTML/netUnAvailablePromptTitle" netUnAvailablePromptDetail="$$$/Configurator/Widget/HTML/netUnAvailablePromptDetail" loadingText="$$$/Configurator/Widget/HTML/loadingText" homeText="$$$/Configurator/Widget/HTML/homeText" reloadText="$$$/Configurator/Widget/HTML/reloadText" reloadLabel="$$$/Configurator/Widget/HTML/reloadLabel" escCloseText="$$$/Configurator/Widget/HTML/escCloseText" showNavBar="$$$/Configurator/Attribute/showNavBar/value###3" location="$$$/Configurator/key_###4" homeLocation="$$$/Configurator/key_###5" width="" height="" cfgVisible="$$$/Configurator/Attribute/visible/value###6" top="0" bottom="0" x="0" y="0" left="0" right="0">
-        <htmlText><![CDATA[$$$/Configurator/key_###7]]></htmlText>
-      </html>
+    <canvas _itemId="container_canvas" toolTip="$$$/Configurator/Container/Canvas/desc" label="$$$/Configurator/key_###8" width="198" height="205" cfgVisible="$$$/Configurator/Attribute/visible/value###9" x="0" y="13" top="0" bottom="0" left="0" right="0">
+      <text _itemId="widget_text" toolTip="$$$/Configurator/Widget/Text/desc###57" styleName="scopeTextArea" width="100" height="20" backgroundAlpha="0" cfgVisible="$$$/Configurator/Attribute/visible/value###58" fontSize="10" fontWeight="normal" fontStyle="normal" textDecoration="none" textAlign="left" backgroundColor="16777215" borderColor="12040892" borderStyle="none" x="24" y="10">
+        <text><![CDATA[$$$/Configurator/key_###59]]></text>
+      </text>
+      <text _itemId="widget_text" toolTip="$$$/Configurator/Widget/Text/desc" styleName="scopeTextArea" width="100" height="20" backgroundAlpha="0" cfgVisible="$$$/Configurator/Attribute/visible/value###60" fontSize="10" fontWeight="normal" fontStyle="normal" textDecoration="none" textAlign="left" backgroundColor="16777215" borderColor="12040892" borderStyle="none" x="24" y="123">
+        <text><![CDATA[$$$/Configurator/key_###61]]></text>
+      </text>
+      <ps_script _itemId="ps_actionscript_script" label="$$$/Configurator/ActionScript/Script/name###40" toolTip="$$$/Configurator/ActionScript/Script/desc###41" cfgVisible="$$$/Configurator/Attribute/visible/value###42" click="onClick" icon="ps_script" overIcon="ps_script_r" showIcon="true" mouseUpIcon="res/button-dark.png" x="24" y="33" width="60" height="25">
+        <script><![CDATA[$.evalFile(app.path + '/Presets/Scripts/Save%20Panel/Save%20Panel%20Only/Saver.jsx');s.save({	format: 'jpg',	size: 'full',	suffix: ''});]]></script>
+        <eventListeners>
+          <function id="onClick" actionType="jsfunction" jsFunctionName="ps_invoke_script">
+            <param id="script"/>
+          </function>
+        </eventListeners>
+      </ps_script>
+      <ps_script _itemId="ps_actionscript_script" label="$$$/Configurator/ActionScript/Script/name###46" toolTip="$$$/Configurator/ActionScript/Script/desc###47" cfgVisible="$$$/Configurator/Attribute/visible/value###48" click="onClick" icon="ps_script" overIcon="ps_script_r" showIcon="true" mouseUpIcon="res/button-dark.png" x="24" y="61" width="60" height="25">
+        <script><![CDATA[$.evalFile(app.path + '/Presets/Scripts/Save%20Panel/Save%20Panel%20Only/Saver.jsx');s.save({	format: 'webjpg',	size: '820',	suffix: ''});]]></script>
+        <eventListeners>
+          <function id="onClick" actionType="jsfunction" jsFunctionName="ps_invoke_script">
+            <param id="script"/>
+          </function>
+        </eventListeners>
+      </ps_script>
+      <ps_script _itemId="ps_actionscript_script" label="$$$/Configurator/ActionScript/Script/name###49" toolTip="$$$/Configurator/ActionScript/Script/desc###50" cfgVisible="$$$/Configurator/Attribute/visible/value###51" click="onClick" icon="ps_script" overIcon="ps_script_r" showIcon="true" mouseUpIcon="res/button-dark.png" x="24" y="89" width="60" height="25">
+        <script><![CDATA[$.evalFile(app.path + '/Presets/Scripts/Save%20Panel/Save%20Panel%20Only/Saver.jsx');s.save({	format: 'webjpg',	size: '920',	suffix: ''});]]></script>
+        <eventListeners>
+          <function id="onClick" actionType="jsfunction" jsFunctionName="ps_invoke_script">
+            <param id="script"/>
+          </function>
+        </eventListeners>
+      </ps_script>
+      <ps_script _itemId="ps_actionscript_script" label="$$$/Configurator/ActionScript/Script/name###43" toolTip="$$$/Configurator/ActionScript/Script/desc###44" cfgVisible="$$$/Configurator/Attribute/visible/value###45" click="onClick" icon="ps_script" overIcon="ps_script_r" showIcon="true" mouseUpIcon="res/button-dark.png" x="88" y="33" width="60" height="25">
+        <script><![CDATA[$.evalFile(app.path + '/Presets/Scripts/Save%20Panel/Save%20Panel%20Only/Saver.jsx');s.save({	format: 'jpg',	size: 'full',	suffix: '_bw'});]]></script>
+        <eventListeners>
+          <function id="onClick" actionType="jsfunction" jsFunctionName="ps_invoke_script">
+            <param id="script"/>
+          </function>
+        </eventListeners>
+      </ps_script>
+      <ps_script _itemId="ps_actionscript_script" label="$$$/Configurator/ActionScript/Script/name###52" toolTip="$$$/Configurator/ActionScript/Script/desc###53" cfgVisible="$$$/Configurator/Attribute/visible/value###54" click="onClick" icon="ps_script" overIcon="ps_script_r" showIcon="true" mouseUpIcon="res/button-dark.png" x="88" y="61" width="60" height="25">
+        <script><![CDATA[$.evalFile(app.path + '/Presets/Scripts/Save%20Panel/Save%20Panel%20Only/Saver.jsx');s.save({	format: 'webjpg',	size: '820',	suffix: '_bw'});]]></script>
+        <eventListeners>
+          <function id="onClick" actionType="jsfunction" jsFunctionName="ps_invoke_script">
+            <param id="script"/>
+          </function>
+        </eventListeners>
+      </ps_script>
+      <ps_script _itemId="ps_actionscript_script" label="$$$/Configurator/ActionScript/Script/name###37" toolTip="$$$/Configurator/ActionScript/Script/desc###38" cfgVisible="$$$/Configurator/Attribute/visible/value###39" click="onClick" icon="ps_script" overIcon="ps_script_r" showIcon="true" mouseUpIcon="res/button-dark.png" x="88" y="89" width="60" height="25">
+        <script><![CDATA[$.evalFile(app.path + '/Presets/Scripts/Save%20Panel/Save%20Panel%20Only/Saver.jsx');s.save({	format: 'webjpg',	size: '920',	suffix: '_bw'});]]></script>
+        <eventListeners>
+          <function id="onClick" actionType="jsfunction" jsFunctionName="ps_invoke_script">
+            <param id="script"/>
+          </function>
+        </eventListeners>
+      </ps_script>
+      <ps_script _itemId="ps_actionscript_script" label="$$$/Configurator/ActionScript/Script/name###34" toolTip="$$$/Configurator/ActionScript/Script/desc###35" cfgVisible="$$$/Configurator/Attribute/visible/value###36" click="onClick" icon="ps_script" overIcon="ps_script_r" showIcon="true" mouseUpIcon="res/button-dark.png" x="24" y="143" width="60" height="25">
+        <script><![CDATA[$.evalFile(app.path + '/Presets/Scripts/Save%20Panel/Save%20Panel%20Only/Saver.jsx');s.save({	format: 'psd',	size: 'full'});]]></script>
+        <eventListeners>
+          <function id="onClick" actionType="jsfunction" jsFunctionName="ps_invoke_script">
+            <param id="script"/>
+          </function>
+        </eventListeners>
+      </ps_script>
     </canvas>
   </ConfiguratorPanel>
 </gpc>
