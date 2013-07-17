@@ -1,0 +1,97 @@
+body {
+	margin: 8px 12px 12px 12px;
+	background: #535353;
+	overflow: hidden;
+	/*font-family: Lucida Grande, Arial, sans-serif;*/
+	font-size: 10px;
+	color: #e7e7e7;
+}
+
+a.btn {
+	background-image: linear-gradient(bottom, rgb(99,99,99) 0%, rgb(116,116,116) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(99,99,99) 0%, rgb(116,116,116) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(99,99,99) 0%, rgb(116,116,116) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(99,99,99) 0%, rgb(116,116,116) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(99,99,99) 0%, rgb(116,116,116) 100%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(99,99,99)),
+		color-stop(1, rgb(116,116,116))
+	);
+	
+	border: 1px solid #272727;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	display: inline-block;
+	box-shadow: 0 1px 0px rgba(255,255,255,0.12);
+	margin: 0 2px 4px 0;
+}
+
+a.btn span {
+	border-top: 1px solid #919191;
+	display: inline-block;
+	padding: 0 10px 0 10px;
+	height: 22px;
+	line-height: 22px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+a.btn:hover {
+	background-image: linear-gradient(bottom, rgb(115,115,115) 0%, rgb(130,130,130) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(130,130,130) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(130,130,130) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(130,130,130) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(130,130,130) 100%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(115,115,115)),
+		color-stop(1, rgb(130,130,130))
+	);
+	color: #212121;
+	cursor: default;
+}
+
+a.btn:active {
+	background-image: linear-gradient(bottom, rgb(63,63,63) 100%, rgb(55,55,55) 0%);
+	background-image: -o-linear-gradient(bottom, rgb(63,63,63) 100%, rgb(55,55,55) 0%);
+	background-image: -moz-linear-gradient(bottom, rgb(63,63,63) 100%, rgb(55,55,55) 0%);
+	background-image: -webkit-linear-gradient(bottom, rgb(63,63,63) 100%, rgb(55,55,55) 0%);
+	background-image: -ms-linear-gradient(bottom, rgb(63,63,63) 100%, rgb(55,55,55) 0%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(1, rgb(63,63,63)),
+		color-stop(0, rgb(55,55,55))
+	);
+	color: #212121;
+}
+
+a.btn:active span { border-top: 1px solid #333; }
+
+div.options {
+	margin: 2.5em 0 0 0;
+}
+
+a.btn.options span {
+	background: url(../img/gear.png) 4px 3px no-repeat;
+	padding-left: 24px;
+}
+
+div.actions {
+	width: 90%;
+	text-align: center;
+	margin: 0 auto 0 auto;
+}
+
+div.actions {
+	text-align: left;
+}
