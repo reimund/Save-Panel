@@ -8,19 +8,12 @@
  */
 
 
-//@include settings.js
 //@include common.js
 //@include constants.js
 //@include actions.js
-//@include PSSettings.js
 //@include Json.js
 
-//settings.clearSettings()
-//settings.saveSettings();
-
-// Use stored settings if they exist, defaults otherwise.
-
-var SavePanelOptions = function(settings)
+var SavePanelOptions = function()
 {
 	var windowRes, w;
 
@@ -155,10 +148,9 @@ var SavePanelOptions = function(settings)
 		}, \
 	}";
 
-	this.w        =  new Window(windowRes, 'Save Panel Options');
-	this.presets  = [];
-	this.settings = settings;
-	
+	this.w       =  new Window(windowRes, 'Save Panel Options');
+	this.presets = sp.loadPresets();
+
 	this.setupUi();
 	this.w.show();
 
@@ -227,7 +219,8 @@ SavePanelOptions.prototype.setupUi = function()
 	self       = this;
 	panel      = self.w.mainGroup.editPreset;
 	listPanel  = self.w.mainGroup.savedPresets;
-	presets    = self.settings.presets;
+	//presets    = self.settings.presets;
+	presets    = self.presets;
 	smallFont  = ScriptUI.newFont(this.w.graphics.font.name, ScriptUI.FontStyle.REGULAR, 10);
 	actions    = [SP_NOACTION, SP_RESIZETOFIT, SP_CUSTOMACTION];
 
@@ -255,12 +248,13 @@ SavePanelOptions.prototype.setupUi = function()
 
 	panel.quality.slider.enabled    = panel.saveTypes.jpeg.value || panel.saveTypes.webjpeg.value;
 	panel.quality.e.enabled         = panel.saveTypes.jpeg.value || panel.saveTypes.webjpeg.value;
+	panel.quality.e.text            = 10;
 	panel.action.dropdown.selection = panel.action.dropdown.items[0];
 
 	self.setupEvents();
 
 	listPanel.list.selection = 0;
-	panel.filename.s2.text          = self.getFilename();
+	panel.filename.s2.text   = self.getFilename();
 
 	this.w.layout.layout(true);
 }
@@ -309,7 +303,7 @@ SavePanelOptions.prototype.setupEvents = function()
 	panel.saveTypes.png.onClick             = function(e) { self.changed(); };
 	panel.saveTypes.jpeg.onClick            = function(e) { self.changed(); panel.quality.e.enabled     = panel.quality.slider.enabled = this.value || panel.saveTypes.webjpeg.value; };
 	panel.saveTypes.webjpeg.onClick         = function(e) { self.changed(); panel.quality.e.enabled     = panel.quality.slider.enabled = this.value || panel.saveTypes.jpeg.value; };
-	panel.quality.slider.onChange           = function(e) { self.changed(); panel.quality.e.text        = Math.round(x.value); };
+	panel.quality.slider.onChange           = function(e) { self.changed(); panel.quality.e.text        = Math.round(this.value); };
 	panel.quality.slider.onChanging         = function(e) { self.changed(); panel.quality.e.text        = Math.round(this.value); };
 	panel.quality.e.onChange                = function(e) { self.changed(); panel.quality.slider.value  = Math.round(Number(this.text)); };
 	panel.buttonGroup.g.g.save.onClick      = function(e) { self.changed(); panel.buttonGroup.s.visible = self.updatePreset(); };
@@ -317,6 +311,8 @@ SavePanelOptions.prototype.setupEvents = function()
 		self.changed();
 		panel.index = listPanel.list.items.length;
 		self.addPreset(self.createPreset());
+		listPanel.list.selection = listPanel.list.items.length - 1;
+		panel.buttonGroup.g.g.save.notify('onClick');
 	};
 
 	listPanel.list.onChange                 = function(e) { self.changed(); self.redrawPreset(self.presets[listPanel.list.selection.index]); };
@@ -325,7 +321,7 @@ SavePanelOptions.prototype.setupEvents = function()
 
 	self.w.buttonGroup.okButton.onClick     = function(e)
 	{
-		self.saveSettings();
+		sp.savePresets(self.presets);
 		self.serializeInterface();
 		self.w.close(1);
 	};
@@ -355,17 +351,6 @@ SavePanelOptions.prototype.addPreset = function(preset)
 	this.presets[item.index] = preset;
 }
 
-SavePanelOptions.prototype.saveSettings = function()
-{
-	var self;
-
-	self                  = this;
-	self.settings.presets = self.presets;
-
-	settings.addEntry('spSettings', self.settings);
-	settings.saveSettings();
-}
-
 SavePanelOptions.prototype.getListItemName = function(name, heading)
 {
 	return name + ' (' + heading + ')';
@@ -374,6 +359,9 @@ SavePanelOptions.prototype.getListItemName = function(name, heading)
 SavePanelOptions.prototype.redrawPreset = function(preset)
 {
 	var self, panel;
+
+	if (!preset.name)
+		return;
 
 	self                          = this;
 	self.currentPreset            = preset;
@@ -477,7 +465,7 @@ SavePanelOptions.prototype.updatePreset = function()
 		self.presets[list.selection.index] = preset;
 	}
 
-	self.saveSettings();
+	sp.savePresets(self.presets);
 
 	return true;
 }
@@ -567,5 +555,4 @@ sp_Preset = function()
 
 sp.preset = function() { return new sp_Preset(); }
 
-var spSettings = spGetSettings();
-var dialog = new SavePanelOptions(spSettings);
+var dialog = new SavePanelOptions();

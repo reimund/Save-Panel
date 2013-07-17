@@ -1,11 +1,9 @@
 ﻿//@include common.js
-//@include settings.js
 //@include constants.js
 
 /*
  * Saver constructor.
  */
-//sp = {};
 sp.Saver = function() { }
 
 /**
@@ -134,7 +132,7 @@ sp.Saver.prototype.getRoot = function(options)
 
 	docDir   = new Folder(activeDocument.path);
 	root     = docDir;
-	presets  = spSettings.presets;
+	presets  = sp.loadPresets.presets;
 	traverse = 0;
 
 	for (i in presets) {
@@ -210,8 +208,6 @@ sp.Saver.prototype.getSfwSaveOptions = function()
 	options.extension = 'jpg';
 	return options;
 }
-
-var spSettings = spGetSettings();
 
 //preset = {
 	//name: '920',

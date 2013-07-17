@@ -3,6 +3,8 @@
  */
 sp = {};
 
+sp.presetsFile = new File(app.path + '/Plug-Ins/Panels/Save%20Panel/content/Save%20Panel.assets/presets.json');
+
 /**
  * Strips the extension of a filename string.
  */
@@ -92,3 +94,39 @@ sp.zeroPad = function(n, l)
 	while (n.length < l) {n = pad + n;}
 	return n;
 }
+
+/**
+ * Load presets from presets.json, located in '<Panel directory>/content'.
+ */
+sp.loadPresets = function()
+{
+	var json;
+	
+	if (sp.presetsFile.open('r')) {
+		json = Json.eval(sp.presetsFile.readln());
+		sp.presetsFile.close();
+		return json['presets'];
+	}
+	
+	return [];
+}
+
+/**
+ * Save the specified presets to presets.json.
+ */
+sp.savePresets = function(presets)
+{
+	var self, json;
+
+	self = this;
+	json = Json.encode({ presets: presets });
+	
+	if (sp.presetsFile.open('w')) {
+		sp.presetsFile.writeln(json);
+		return true;
+	}
+
+	return false;
+}
+
+
