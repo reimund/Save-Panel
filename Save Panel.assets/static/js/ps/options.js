@@ -31,7 +31,7 @@ var SavePanelOptions = function(settings)
 			orientation: 'row', \
 			savedPresets: Panel { \
 				orientation: 'column', \
-				preferredSize: [100, 200], \
+				preferredSize: [200, 240], \
 				alignChildren: 'left', \
 				text: 'Saved presets', \
 				presets: Group { \
@@ -233,7 +233,7 @@ SavePanelOptions.prototype.setupUi = function()
 
 	listPanel.list = listPanel.presets.add(
 		"ListBox { \
-			bounds: [10, 10, 180, 288], \
+			bounds: [10, 10, 240, 352], \
 			properties: { \
 				numberOfColumns: 1, \
 				showHeaders: false, \
