@@ -1,27 +1,30 @@
 Save Panel
 ==========
 
-Version 0.1.0 - Fri 5 Oct 2012
+Version 0.9.5 - Wed 17 Jul 2013
 
 by Reimund Trost <reimund@code7.se> 
-Website <http://lumens.se/savepanel/>
+Website <http://lumens.se/tools/savepanel/>
 
 
 Description
 -----------
-Save Panel is an extension for Adobe Photoshop that speeds up the file save
-process.
+Save Panel is an extension for Adobe Photoshop that speeds up the file saving
+process by allowing you direct access to save presets via a custom panel.
 
 
 Features
 -------
--	Save full sized jpeg in ./jpeg/full/[basename].jpg
--	Save full sized jpeg in ./jpeg/full/[basename]_bw.jpg
--	Save jpeg with 820px width in ./jpeg/820/[basename].jpg
--	Save jpeg with 820px width in ./jpeg/820/[basename]_bw.jpg
--	Save jpeg with 920px width in ./jpeg/920/[basename].jpg
--	Save jpeg with 920px width in ./jpeg/920/[basename]_bw.jpg
--	Save psd in ./psd/[basename].psd
+- Create save presets.
+- Automatically creates missing directories.
+- Save to either a path relative to the current file or to an absolute file.
+- Custom filename: Append or prepend a suffix/prefix to the current filename or
+  set the filename entirely.
+- Save jpg, png or psd.
+- Apply resize to fit dimension before saving.
+- Apply custom action before saving.
+- Option to automatically close the file after it's been saved.
+- Categorise similar buttons under a common heading.
 
 
 Installation
@@ -34,6 +37,10 @@ directory>/Plug-ins/Panels__.
 
 Changelog
 =========
+
+0.9.5
+-----
+- Total rewrite. Now with dynamic panel and save presets.
 
 0.1.0
 -----
