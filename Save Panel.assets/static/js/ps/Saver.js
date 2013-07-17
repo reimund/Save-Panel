@@ -15,8 +15,10 @@ sp.Saver.prototype.save = function(options)
 {
 	var doc, formatOptions, workDir, name, dest, dup;
 
-	if (0 == documents.length)
+	if (0 == documents.length) {
+		alert('Nothing to save.');
 		return;
+	}
 	
 	//if (undefined == options.suffix)
 		//options.suffix = '';
@@ -31,7 +33,7 @@ sp.Saver.prototype.save = function(options)
 
 	doc        = activeDocument;
 	root       = this.getRoot(options);
-	name       = sp.basename(doc.name).substr(0, 254); // Don't allow filenames longer than 255 characters.
+	name       = options.filename.replace('$name', sp.basename(doc.name)); // Don't allow filenames longer than 255 characters.
 	destDir    = options.path;
 	jpgsuffix  = '';
 
@@ -209,113 +211,24 @@ sp.Saver.prototype.getSfwSaveOptions = function()
 	return options;
 }
 
-/**
- * Strips the extension of a filename string.
- */
-//sp.basename = function(file)
-//{
-	//return file.replace(/\.[^\..]+$/, '');
-//}
-
-/**
- * Gets the extension part of the specified filename string.
- */
-//sp.extension = function(file)
-//{
-	//return file.match(/\.([^\..]+)$/);
-//}
-
-/**
- * Test array equality.
- */
-//sp.arraysEqual = function(arr1, arr2) {
-    //if (arr1.length !== arr2.length)
-        //return false;
-
-    //for (var i = arr1.length; i--;)
-        //if (arr1[i] !== arr2[i])
-            //return false;
-
-    //return true;
-//}
-
-//sp.isRelative = function(path)
-//{
-	//if ('/' == path[0] || (':' == path[1] && '\\' == path[2]))
-		//return false;
-	//return true;
-//}
-
-/**
- * Gets the next available file name by increasing a trailing sequential
- * number.
- */
-//sp.nextFilename = function(directory, basename, formats, alwaysPad)
-//{
-	//var padding, collision, file;
-
-	//if (alwaysPad) {
-		//padding = '1';
-		//separator = '_'
-	//} else
-		//padding = separator = ''
-
-	//while(true) {
-		//collision = false;
-
-		//for (extension in formats) {
-			//file = new File(directory + '/' + basename + separator + padding + '.' + extension);
-			//if (file.exists) {
-				//collision = true;
-				
-				//if (!alwaysPad && '' == padding) {
-					//padding = '0';
-					//separator = '_';
-				//}
-				//break;
-			//}
-		//}
-
-		//// Increase the sequential number by 1 if there is a filename
-		//// collision.
-		//if (collision)
-			//padding = sp.zeroPad(Number(padding) + 1, 1);
-		//else
-			//break;
-	//}
-
-	//return directory + '/' + basename + separator + padding;
-//}
-
-/**
- * Pads the given number n with l zeroes.
- */
-//sp.zeroPad = function(n, l)
-//{
-	//n = n.toString();
-	//l = Number(l);
-	//var pad = '0';
-	//while (n.length < l) {n = pad + n;}
-	//return n;
-//}
-
 var spSettings = spGetSettings();
 
-preset = {
-	name: '920',
-	path: 'jpeg/920',
-	outputFormats: { jpg: true, psd: true, png: true, webjpg: false },
-	jpegQuality: 11,
-	overwrite: false,
-	close: false,
-	action: {
-		//type: SP_RESIZETOFIT,
-		type: SP_CUSTOMACTION,
-		//type: SP_NOACTION,
-		//args: [920, 2000]
-		args: ['Reimund', 'Look 1']
-	},
-}
+//preset = {
+	//name: '920',
+	//path: 'jpeg/920',
+	//outputFormats: { jpg: true, psd: true, png: true, webjpg: false },
+	//jpegQuality: 11,
+	//overwrite: false,
+	//filename: '$name',
+	//close: false,
+	//action: {
+		////type: SP_RESIZETOFIT,
+		//type: SP_CUSTOMACTION,
+		////type: SP_NOACTION,
+		////args: [920, 2000]
+		//args: ['Reimund', 'Look 1']
+	//},
+//}
 
-var s = new sp.Saver();
-s.save(preset);
+//var s = new sp.Saver();
+//s.save(preset);

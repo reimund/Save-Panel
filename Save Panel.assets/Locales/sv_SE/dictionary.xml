@@ -45,6 +45,12 @@
   <str name="Configurator/Attribute/showNavBar/value###3" translate="yes">
     <val>false</val>
   </str>
+  <str name="Configurator/Attribute/showNavBar/value###62" translate="yes">
+    <val>True</val>
+  </str>
+  <str name="Configurator/Attribute/showNavBar/value###67" translate="yes">
+    <val>false</val>
+  </str>
   <str name="Configurator/Attribute/visible/value###36" translate="yes">
     <val>True</val>
   </str>
@@ -78,6 +84,12 @@
   <str name="Configurator/Attribute/visible/value###60" translate="yes">
     <val>True</val>
   </str>
+  <str name="Configurator/Attribute/visible/value###65" translate="yes">
+    <val>True</val>
+  </str>
+  <str name="Configurator/Attribute/visible/value###70" translate="yes">
+    <val>true</val>
+  </str>
   <str name="Configurator/Attribute/visible/value###9" translate="yes">
     <val>True</val>
   </str>
@@ -99,20 +111,38 @@
   <str name="Configurator/key_###61" translate="yes">
     <val>Save Psd</val>
   </str>
+  <str name="Configurator/key_###63" translate="yes">
+    <val/>
+  </str>
+  <str name="Configurator/key_###64" translate="yes">
+    <val/>
+  </str>
+  <str name="Configurator/key_###66" translate="yes">
+    <val/>
+  </str>
+  <str name="Configurator/key_###68" translate="yes">
+    <val>/Volumes/System2/Users/reimund/Projects/savepanel/repository/Save Panel.assets/savepanel.html</val>
+  </str>
+  <str name="Configurator/key_###69" translate="yes">
+    <val/>
+  </str>
   <str name="Configurator/key_###7" translate="yes">
+    <val/>
+  </str>
+  <str name="Configurator/key_###71" translate="yes">
     <val/>
   </str>
   <str name="Configurator/key_###8" translate="yes">
     <val/>
   </str>
   <str name="Configurator/watermark/htmlText" translate="yes">
-    <val>Skapad av &lt;a href='http://lumens.se/tychpanel/' target='_blank'&gt;Reimund Trost&lt;/a&gt; med &lt;a href='http://labs.adobe.com/technologies/configurator/' target='_blank'&gt;Configurator&lt;/a&gt;</val>
+    <val>&lt;a href='http://labs.adobe.com/technologies/configurator/' target='_blank'&gt;Skapat med Configurator&lt;/a&gt;</val>
   </str>
   <str name="Configurator/watermark/width" translate="yes">
-    <val>197</val>
+    <val>122</val>
   </str>
   <str name="Configurator/watermark/x" translate="yes">
-    <val>13</val>
+    <val>78</val>
   </str>
   <str name="Configurator/Widget/HTML/backwardToolTip" translate="yes">
     <val>Gå tillbaka till föregående sida</val>

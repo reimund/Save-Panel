@@ -9,10 +9,11 @@
 
 
 //@include settings.js
-//@include PSSettings.js
-//@include Json.js
+//@include common.js
 //@include constants.js
 //@include actions.js
+//@include PSSettings.js
+//@include Json.js
 
 //settings.clearSettings()
 //settings.saveSettings();
@@ -128,7 +129,7 @@ var SavePanelOptions = function(settings)
 				filename: Group { \
 					s1: StaticText { text: 'Filename', helpTip: '$name will be replaced with the original filename (without extension).', }, \
 					e: EditText { characters: 20, text: '$name', helpTip: '$name will be replaced with the original filename (without extension).' }, \
-					s2: StaticText { }, \
+					s2: StaticText { bounds: [0, 0, 300, 16] }, \
 				}, \
 				buttonGroup: Group { \
 					margins: [0, 20, 0, 0], \
@@ -198,6 +199,7 @@ SavePanelOptions.prototype.createPreset = function()
 		jpegQuality: parseInt(panel.quality.e.text),
 		close: panel.closeWhenSaved.c.value,
 		overwrite: panel.overwrite.c.value,
+		filename: panel.filename.e.text,
 		action: action,
 	};
 
@@ -254,22 +256,37 @@ SavePanelOptions.prototype.setupUi = function()
 	panel.quality.slider.enabled    = panel.saveTypes.jpeg.value || panel.saveTypes.webjpeg.value;
 	panel.quality.e.enabled         = panel.saveTypes.jpeg.value || panel.saveTypes.webjpeg.value;
 	panel.action.dropdown.selection = panel.action.dropdown.items[0];
-	panel.filename.s2.text          = self.getFilename();
 
 	self.setupEvents();
-	listPanel.list.selection = 0;
 
+	listPanel.list.selection = 0;
+	panel.filename.s2.text          = self.getFilename();
 
 	this.w.layout.layout(true);
 }
 
 SavePanelOptions.prototype.getFilename = function()
 {
-	var self, regex;
+	var self, types, regex, name, ext;
+
+	if (documents.length < 1)
+		return '';
 
 	self  = this;
+	types = self.w.mainGroup.editPreset.saveTypes;
+	ext   = 'jpg';
+
+	if (types.jpeg.value || types.webjpeg.value)
+		ext = 'jpg';
+	else if (types.psd.value)
+		ext = 'psd';
+	else if (types.png.value)
+		ext = 'png';
+
+	name  = sp.basename(activeDocument.name).substr(0, 254);
 	regex = self.w.mainGroup.editPreset.filename.e.text;
-	return regex.replace('$name', 'dasda');
+
+	return regex.replace('$name', name) + '.' + ext;
 }
 
 SavePanelOptions.prototype.setupEvents = function()
@@ -287,6 +304,7 @@ SavePanelOptions.prototype.setupEvents = function()
 	panel.g2.browse.onClick                 = function(e) { self.changed(); panel.g2.pathGroup.e.text   = (f = Folder.selectDialog('Please select a directory.')) == null ? '' : f.fsName; };
 	panel.closeWhenSaved.c.onClick          = function(e) { self.changed(); };
 	panel.overwrite.c.onClick               = function(e) { self.changed(); };
+	panel.filename.e.onChanging             = function(e) { self.changed(); };
 	panel.saveTypes.psd.onClick             = function(e) { self.changed(); };
 	panel.saveTypes.png.onClick             = function(e) { self.changed(); };
 	panel.saveTypes.jpeg.onClick            = function(e) { self.changed(); panel.quality.e.enabled     = panel.quality.slider.enabled = this.value || panel.saveTypes.webjpeg.value; };
@@ -320,6 +338,8 @@ SavePanelOptions.prototype.setupEvents = function()
 SavePanelOptions.prototype.changed = function()
 {
 	this.w.mainGroup.editPreset.buttonGroup.s.visible = false;
+	this.w.mainGroup.editPreset.filename.s2.text      = this.getFilename();
+	//this.w.layout.layout(true);
 }
 
 SavePanelOptions.prototype.addPreset = function(preset)
@@ -372,6 +392,7 @@ SavePanelOptions.prototype.redrawPreset = function(preset)
 	panel.quality.slider.enabled  = preset.outputFormats.jpg || preset.outputFormats.webjpg;
 	panel.closeWhenSaved.c.value  = preset.close;
 	panel.overwrite.c.value       = preset.overwrite;
+	panel.filename.e.text         = preset.filename;
 
 	if (SP_RESIZETOFIT == preset.action.type) {
 		panel.action.dropdown.select(spActionToString(SP_RESIZETOFIT));
@@ -544,7 +565,6 @@ sp_Preset = function()
 	};
 }
 
-sp = {}
 sp.preset = function() { return new sp_Preset(); }
 
 var spSettings = spGetSettings();

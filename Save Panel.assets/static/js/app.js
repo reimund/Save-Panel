@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
 	$('a.btn.options').on('click', function() {
 		var script;
 		try {
-			script = _Adobe.assetsPath + '/static/js/ps/options.jsx';
+			script = _Adobe.assetsPath + '/static/js/ps/options.js';
 			_Adobe.invokeScriptFile(script);
 			update();
 		} catch (e) {

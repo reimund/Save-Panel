@@ -13,6 +13,7 @@ defaults = {
 			outputFormats: { jpg: false, psd: false, png: false, webjpg: true },
 			jpegQuality: 10,
 			overwrite: true,
+			filename: '$name',
 			close: false,
 			action: {
 				type: SP_RESIZETOFIT,
@@ -26,6 +27,7 @@ defaults = {
 			outputFormats: { jpg: false, psd: false, png: false, webjpg: true },
 			jpegQuality: 10,
 			overwrite: true,
+			filename: '$name',
 			close: false,
 			action: {
 				type: SP_RESIZETOFIT,
@@ -39,6 +41,7 @@ defaults = {
 			outputFormats: { jpg: true, psd: false, png: false, webjpg: false },
 			jpegQuality: 12,
 			overwrite: true,
+			filename: '$name',
 			close: false,
 			action: {
 				type: SP_NOACTION,
@@ -52,6 +55,7 @@ defaults = {
 			outputFormats: { jpg: false, psd: true, png: false, webjpg: false },
 			jpegQuality: 10,
 			overwrite: true,
+			filename: '$name',
 			close: false,
 			action: {
 				type: SP_NOACTION,
