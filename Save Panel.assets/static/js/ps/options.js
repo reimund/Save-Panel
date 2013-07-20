@@ -520,7 +520,7 @@ SavePanelOptions.prototype.serializeInterface = function()
 		for (i in grouped[key]) {
 			preset = grouped[key][i];
 			html  += '<a class="btn save" data-preset="\'' + Json.encode(preset).replace(/"/g, '&quot;') + '">\n';
-			html  += '<span>' + preset.name + '</span></a>\n';
+			html  += '<span>' + preset.name.replace(/\s+/g, '&nbsp;') + '</span></a>\n';
 		}
 		html += '</div>\n';
 	}
