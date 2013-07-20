@@ -132,7 +132,7 @@ sp.Saver.prototype.getRoot = function(options)
 
 	docDir   = new Folder(activeDocument.path);
 	root     = docDir;
-	presets  = sp.loadPresets.presets;
+	presets  = sp.loadPresets();
 	traverse = 0;
 
 	for (i in presets) {
@@ -156,8 +156,8 @@ sp.Saver.prototype.createDirectories = function(path)
 {
 	var dirs, current;
 
-	dirs = path.split(/[\/\\]/);
-	current = new Folder(dirs[0]);
+	current = new Folder(activeDocument.path);
+	dirs    = path.substring(current.fullName.length).split(/[\/\\]/);
 
 	for (i in dirs) {
 		current = new Folder(current.fullName + '/' + dirs[i]);
@@ -210,17 +210,18 @@ sp.Saver.prototype.getSfwSaveOptions = function()
 }
 
 //preset = {
-	//name: '920',
-	//path: 'jpeg/920',
-	//outputFormats: { jpg: true, psd: true, png: true, webjpg: false },
+	//name: 'full',
+	//path: 'jpeg/full',
+	////outputFormats: { jpg: true, psd: true, png: true, webjpg: false },
+	//outputFormats: { jpg: true, psd: false, png: false, webjpg: false },
 	//jpegQuality: 11,
 	//overwrite: false,
 	//filename: '$name',
 	//close: false,
 	//action: {
 		////type: SP_RESIZETOFIT,
-		//type: SP_CUSTOMACTION,
-		////type: SP_NOACTION,
+		////type: SP_CUSTOMACTION,
+		//type: SP_NOACTION,
 		////args: [920, 2000]
 		//args: ['Reimund', 'Look 1']
 	//},
