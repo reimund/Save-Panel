@@ -248,13 +248,14 @@ SavePanelOptions.prototype.setupUi = function()
 
 	panel.quality.slider.enabled    = panel.saveTypes.jpeg.value || panel.saveTypes.webjpeg.value;
 	panel.quality.e.enabled         = panel.saveTypes.jpeg.value || panel.saveTypes.webjpeg.value;
-	panel.quality.e.text            = 10;
 	panel.action.dropdown.selection = panel.action.dropdown.items[0];
 
 	self.setupEvents();
 
-	listPanel.list.selection = 0;
-	panel.filename.s2.text   = self.getFilename();
+	listPanel.list.selection        = 0;
+	panel.filename.s2.text          = self.getFilename();
+	panel.quality.e.text            = 10;
+	panel.quality.e.notify('onChange');;
 
 	this.w.layout.layout(true);
 }
@@ -315,8 +316,8 @@ SavePanelOptions.prototype.setupEvents = function()
 		panel.buttonGroup.g.g.save.notify('onClick');
 	};
 
-	listPanel.list.onChange                 = function(e) { self.changed(); self.redrawPreset(self.presets[listPanel.list.selection.index]); };
-	listPanel.remov.onClick                 = function(e) { self.changed(); self.removePreset(self.currentPreset); };
+	listPanel.list.onChange                 = function(e) { self.redrawPreset(self.presets[listPanel.list.selection.index]); self.changed(); };
+	listPanel.remov.onClick                 = function(e) { self.removePreset(self.currentPreset); self.changed(); };
 	self.w.buttonGroup.cancelButton.onClick = function(e) { self.w.close(2); };
 
 	self.w.buttonGroup.okButton.onClick     = function(e)
