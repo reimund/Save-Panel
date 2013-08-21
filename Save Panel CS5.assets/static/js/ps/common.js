@@ -1,11 +1,14 @@
-﻿//@include Json.js
+﻿//@include constants.js
+//@include Json.js
 
 /*
  * Saver constructor.
  */
 sp = {};
 
-sp.presetsFile = new File(app.path + '/Plug-Ins/Panels/Save%20Panel/content/Save%20Panel.assets/presets.json');
+sp.presetsFolder = new Folder(SP_SETTINGS_PATH);
+sp.presetsFile   = new File(SP_SETTINGS_PATH + '/presets.json');
+sp.presetsFolder.create();
 
 /**
  * Strips the extension of a filename string.
@@ -74,7 +77,7 @@ sp.nextFilename = function(directory, basename, formats, alwaysPad)
 			}
 		}
 
-		// Increase the sequential number by 1 if there is a filename
+		// IncreasepresetId the sequential number by 1 if there is a filename
 		// collision.
 		if (collision)
 			padding = sp.zeroPad(Number(padding) + 1, 1);
@@ -98,7 +101,7 @@ sp.zeroPad = function(n, l)
 }
 
 /**
- * Load presets from presets.json, located in '<Panel directory>/content'.
+ * Loads presets from presets.json, located in '<Panel directory>/content'.
  */
 sp.loadPresets = function()
 {
@@ -114,7 +117,7 @@ sp.loadPresets = function()
 }
 
 /**
- * Save the specified presets to presets.json.
+ * Saves the specified presets to presets.json.
  */
 sp.savePresets = function(presets)
 {
@@ -131,4 +134,21 @@ sp.savePresets = function(presets)
 	return false;
 }
 
+/**
+ * Maps a numbered script to a preset.
+ *
+ * CS5 only.
+ */
+sp.scriptToPreset = function(script) {
 
+	var whereAmI, parts, presetId, presets;
+
+	scriptParts = script.split('%20');
+	presetId    = Number(scriptParts[scriptParts.length - 1].replace('.js', ''));
+	presets     = sp.loadPresets();
+
+	return presets[presetId];
+
+	//$.writeln(presetId);
+	//$.writeln(preset);
+}

@@ -11,32 +11,34 @@ sp.Saver = function() { }
  */
 sp.Saver.prototype.save = function(options)
 {
-	var doc, formatOptions, workDir, name, dest, dup;
+	var doc, formatOptions, workDir, name, dest, dup, beforeState, f, self;
 
 	if (0 == documents.length) {
 		alert('Nothing to save.');
 		return;
 	}
 	
-	//if (undefined == options.suffix)
-		//options.suffix = '';
-	this.settings = options;
+	self          = this;
+	self.settings = options;
 
 	formatOptions = {
-		'jpg': this.getJpgSaveOptions(),
-		'psd': this.getPsdSaveOptions(),
-		'png': this.getPngSaveOptions(),
-		'webjpg': this.getSfwSaveOptions()
+		'jpg': self.getJpgSaveOptions(),
+		'psd': self.getPsdSaveOptions(),
+		'png': self.getPngSaveOptions(),
+		'webjpg': self.getSfwSaveOptions()
 	};
 
 	doc        = activeDocument;
-	root       = this.getRoot(options);
+	root       = self.getRoot(options);
 	name       = options.filename.replace('$name', sp.basename(doc.name)); // Don't allow filenames longer than 255 characters.
 	destDir    = options.path;
 	jpgsuffix  = '';
 
 	if (sp.isRelative(options.path))
-		destDir = root + '/' + destDir;
+		if (!root)
+			return alert('Cannot save an unsaved document to a relative path.');
+		else
+			destDir = root + '/' + destDir;
 
 	if (options.overwrite)
 		dest = destDir + '/' + name;
@@ -47,25 +49,37 @@ sp.Saver.prototype.save = function(options)
 	if (options.outputFormats['jpg'] && options.outputFormats['webjpg'])
 		jpgsuffix  = '_web';
 	
-	this.createDirectories(new File(dest).path);
+	self.createDirectories(new File(dest).path);
 
-	// This is a bit tricky, but works!
-	if (!options.close)
-		doc = doc.duplicate();
+	// Remember what state we were in before resizing.
+	// If we've already applied a save preset use the state before the last
+	// state.
+	if (doc.historyStates[doc.historyStates.length - 1].toString() == '[HistoryState ' + SP_HISTORY_STATE + ']')
+		beforeState = doc.historyStates.length - 2;
+	else
+		beforeState = doc.historyStates.length - 1;
 
-	this.applyAction(doc, options.action);
+	f = function() {
+		self.applyAction(doc, options.action);
 
-	for (format in options.outputFormats) {
-		var fmtOptions = formatOptions[format];
+		for (format in options.outputFormats) {
+			var fmtOptions = formatOptions[format];
 
-		if (options.outputFormats[format])
-			if ('webjpg' == format)
-				doc.exportDocument(new File(dest + jpgsuffix + '.' + fmtOptions.extension), ExportType.SAVEFORWEB, fmtOptions);
-			else
-				doc.saveAs(new File(dest), fmtOptions, true, Extension.LOWERCASE);
+			if (options.outputFormats[format])
+				if ('webjpg' == format)
+					doc.exportDocument(new File(dest + jpgsuffix + '.' + fmtOptions.extension), ExportType.SAVEFORWEB, fmtOptions);
+				else
+					doc.saveAs(new File(dest), fmtOptions, true, Extension.LOWERCASE);
+		}
 	}
 
-	doc.close(SaveOptions.DONOTSAVECHANGES);
+	doc.suspendHistory(SP_HISTORY_STATE, 'f()');
+
+	// Restore the state.
+	doc.activeHistoryState = doc.historyStates[beforeState];
+
+	if (options.close)
+		doc.close(SaveOptions.DONOTSAVECHANGES);
 }
 
 sp.Saver.prototype.applyAction = function(doc, action)
@@ -130,7 +144,12 @@ sp.Saver.prototype.getRoot = function(options)
 {
 	var root, docDir, presets, preset_dirs, real_dirs, traverse;
 
-	docDir   = new Folder(activeDocument.path);
+	try {
+		docDir = new Folder(activeDocument.path);
+	} catch (e) {
+		return false;
+	}
+
 	root     = docDir;
 	presets  = sp.loadPresets();
 	traverse = 0;

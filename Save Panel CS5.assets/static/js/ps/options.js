@@ -198,7 +198,7 @@ SavePanelOptions.prototype.createPreset = function()
 	if ('' == preset.heading
 			|| '' == preset.name
 			|| '' == preset.path) {
-		alert('You must specify at least \'name\', \'heading\' and \'path\'');
+		alert('You must specify at least \'name\', \'heading\' and \'directory\'');
 		return false;
 	}
 
@@ -255,6 +255,7 @@ SavePanelOptions.prototype.setupUi = function()
 	listPanel.list.selection        = 0;
 	panel.filename.s2.text          = self.getFilename();
 	panel.quality.e.text            = 10;
+	panel.quality.slider.value      = panel.quality.e.text;
 	panel.quality.e.notify('onChange');;
 
 	this.w.layout.layout(true);
@@ -500,27 +501,35 @@ SavePanelOptions.prototype.removePreset = function(preset)
 
 SavePanelOptions.prototype.serializeInterface = function()
 {
-	var script, file, preset, html, grouped;
+	var script, file, preset, html, grouped, scriptLink;
 
 	self    = this;
 	script  = new File($.fileName);
-	file    = new File(script.parent + '/buttons.html');
+	file    = new File(sp.presetsFolder.fullName + '/buttons.html');
 	html    = '';
 	grouped = [];
 
 	for (i in self.presets)
 		if (self.presets[i].heading in grouped)
-			grouped[self.presets[i].heading].push(self.presets[i]);
+			grouped[self.presets[i].heading].push({ data: self.presets[i], index: i });
 		else
-			grouped[self.presets[i].heading] = [self.presets[i]];
+			grouped[self.presets[i].heading] = [{ data: self.presets[i], index: i }];
 
 	for (key in grouped) {
 		html += '<p>' + key + '</p>\n';
 		html += '<div class="buttons">\n';
 		for (i in grouped[key]) {
+
 			preset = grouped[key][i];
-			html  += '<a class="btn save" data-preset="\'' + Json.encode(preset).replace(/"/g, '&quot;') + '">\n';
-			html  += '<span>' + preset.name.replace(/\s+/g, '&nbsp;') + '</span></a>\n';
+
+			if (13 > parseFloat(app.version))
+				// CS5 => use script link.
+				scriptLink = 'href="adobe://photoshop.cs5/Scripts/Save Panel Preset ' + preset.index + '" ';
+			else
+				scriptLink = '';
+
+			html  += '<span class="btn"><a class="save" ' + scriptLink + 'data-preset="\'' + Json.encode(preset.data).replace(/"/g, '&quot;') + '">';
+			html  += preset.data.name.replace(/\s+/g, '&nbsp;') + '</a></span>\n';
 		}
 		html += '</div>\n';
 	}

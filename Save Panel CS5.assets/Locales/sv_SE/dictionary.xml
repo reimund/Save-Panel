@@ -42,8 +42,14 @@
   <str name="Configurator/ActionScript/Script/name###52" translate="yes">
     <val>820 bw</val>
   </str>
+  <str name="Configurator/Attribute/showNavBar/value###1" translate="yes">
+    <val>false</val>
+  </str>
   <str name="Configurator/Attribute/showNavBar/value###3" translate="yes">
     <val>false</val>
+  </str>
+  <str name="Configurator/Attribute/showNavBar/value###36" translate="yes">
+    <val>False</val>
   </str>
   <str name="Configurator/Attribute/showNavBar/value###62" translate="yes">
     <val>True</val>
@@ -56,6 +62,9 @@
   </str>
   <str name="Configurator/Attribute/visible/value###39" translate="yes">
     <val>True</val>
+  </str>
+  <str name="Configurator/Attribute/visible/value###4" translate="yes">
+    <val>true</val>
   </str>
   <str name="Configurator/Attribute/visible/value###42" translate="yes">
     <val>True</val>
@@ -96,8 +105,26 @@
   <str name="Configurator/Container/Canvas/desc" translate="yes">
     <val/>
   </str>
+  <str name="Configurator/FlyoutMenu/about" translate="yes">
+    <val>Om</val>
+  </str>
+  <str name="Configurator/key_###2" translate="yes">
+    <val>savepanel.html</val>
+  </str>
+  <str name="Configurator/key_###3" translate="yes">
+    <val/>
+  </str>
+  <str name="Configurator/key_###37" translate="yes">
+    <val>savepanel-cs5.html</val>
+  </str>
+  <str name="Configurator/key_###38" translate="yes">
+    <val/>
+  </str>
   <str name="Configurator/key_###4" translate="yes">
     <val>savepanel.html</val>
+  </str>
+  <str name="Configurator/key_###40" translate="yes">
+    <val/>
   </str>
   <str name="Configurator/key_###5" translate="yes">
     <val/>
@@ -121,7 +148,7 @@
     <val/>
   </str>
   <str name="Configurator/key_###68" translate="yes">
-    <val>/Volumes/System2/Users/reimund/Projects/savepanel/repository/Save Panel.assets/savepanel.html</val>
+    <val>savepanel-cs6-cc.html</val>
   </str>
   <str name="Configurator/key_###69" translate="yes">
     <val/>

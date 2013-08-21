@@ -1,6 +1,8 @@
-﻿var SP_NOACTION     = 0;
-var SP_RESIZETOFIT  = 1;
-var SP_CUSTOMACTION = 2;
+﻿var SP_NOACTION      = 0;
+var SP_RESIZETOFIT   = 1;
+var SP_CUSTOMACTION  = 2;
+var SP_HISTORY_STATE = 'Apply save preset';
+var SP_SETTINGS_PATH = new File(app.preferencesFolder + '/Save%20Panel/').fsName + '/';
 
 function spActionToString(action)
 {

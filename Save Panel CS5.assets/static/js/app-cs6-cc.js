@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 	waitFor_Adobe(update, 3000);
 
-	$('a.btn.options').on('click', function() {
+	$('span.btn a.options').on('click', function() {
 		var script;
 		try {
 			script = _Adobe.assetsPath + '/static/js/ps/options.js';
@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
 		}
 	});
 
-	$('div.actions').on('click', 'a.btn.save', function() {
+	$('div.actions').on('click', 'span.btn a.save', function() {
 		var presetJsonStr, script;
 		
 		presetJsonStr = $(this).data('preset').substr(1);
@@ -39,7 +39,8 @@ jQuery(document).ready(function($) {
 
 function update() {
 	try {
-		url = _Adobe.assetsPath + '/static/js/ps/buttons.html';
+		_Adobe.includeJSXFile('static/js/ps/interact.js');
+		url = _Adobe.JSXInterface.call('getSettingsPath') + 'buttons.html';
 	} catch (e) {
 		alert(e);
 	}
@@ -90,3 +91,35 @@ sp.debounce = function(fn, timeout)
 		timeoutID = window.setTimeout(fn, timeout);
 	}
 };
+
+// Define event handler.
+function onThemeChanged(e)
+{
+	var bgColor = e.appSkinInfo.panelBackgroundColor;
+
+	if ("d6d6d6" == bgColor)
+		setTheme('light');
+
+	else if ("b8b8b8" == bgColor)
+		setTheme('light');
+		//setTheme('medium');
+
+	else if ("535353" == bgColor)
+		setTheme('dark');
+
+	else if ("343434" == bgColor)
+		setTheme('dark');
+		//setTheme('darker');
+}
+
+function setTheme(theme)
+{
+	$('head link').remove();
+	addStylesheet('static/css/master.css')
+	addStylesheet('static/css/' + theme + '.css')
+}
+
+function addStylesheet(url)
+{
+	$('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', url));
+}

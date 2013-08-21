@@ -34,4 +34,3 @@ this.se_lumens_savepanel = {
 		}
 	}
 };
-

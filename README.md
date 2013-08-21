@@ -1,7 +1,7 @@
 Save Panel
 ==========
 
-Version 0.9.5 - Wed 17 Jul 2013
+Version 0.9.6 - Wed 21 Aug 2013
 
 by Reimund Trost <reimund@code7.se> 
 Website <http://lumens.se/tools/savepanel/>
@@ -25,6 +25,7 @@ Features
 - Apply custom action before saving.
 - Option to automatically close the file after it's been saved.
 - Categorise similar buttons under a common heading.
+- Photoshop CS5, CS6 and CC support.
 
 
 Installation
@@ -37,6 +38,12 @@ directory>/Plug-ins/Panels__.
 
 Changelog
 =========
+
+0.9.6
+-----
+- CS5 support.
+- Basic theming in CS6/CC (light/dark).
+- Writes presets to Photoshop's preferences folder.
 
 0.9.5
 -----

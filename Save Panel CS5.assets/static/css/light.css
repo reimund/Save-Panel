@@ -1,0 +1,67 @@
+body {
+	background: #d6d6d6;
+	color: #555;
+}
+
+span.btn {
+	background-image: linear-gradient(bottom, rgb(211,211,211) 0%, rgb(225,225,225) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(211,211,211) 0%, rgb(225,225,225) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(211,211,211) 0%, rgb(225,225,225) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(211,211,211) 0%, rgb(225,225,225) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(211,211,211) 0%, rgb(225,225,225) 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(211,211,211)),
+		color-stop(1, rgb(225,225,225))
+	);
+	border: 1px solid #5e5e5e;
+}
+
+span.btn a {
+	border: 1px solid #eaeaea;
+	border-top: 1px solid #f9f9f9;
+	border-bottom: 1px solid #dcdcdc;
+	color: #555;
+	padding: 0 9px 0 9px;
+	height: 20px;
+	line-height: 21px;
+}
+
+span.btn:hover {
+	background-image: linear-gradient(bottom, rgb(189,189,189) 0%, rgb(237,237,237) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(189,189,189) 0%, rgb(237,237,237) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(189,189,189) 0%, rgb(237,237,237) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(189,189,189) 0%, rgb(237,237,237) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(189,189,189) 0%, rgb(237,237,237) 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(189,189,189)),
+		color-stop(1, rgb(237,237,237))
+	);
+}
+
+span.btn:active {
+	background-image: linear-gradient(bottom, rgb(122,122,122) 0%, rgb(161,161,161) 73%);
+	background-image: -o-linear-gradient(bottom, rgb(122,122,122) 0%, rgb(161,161,161) 73%);
+	background-image: -moz-linear-gradient(bottom, rgb(122,122,122) 0%, rgb(161,161,161) 73%);
+	background-image: -webkit-linear-gradient(bottom, rgb(122,122,122) 0%, rgb(161,161,161) 73%);
+	background-image: -ms-linear-gradient(bottom, rgb(122,122,122) 0%, rgb(161,161,161) 73%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(122,122,122)),
+		color-stop(0.73, rgb(161,161,161))
+	);
+}
+
+span.btn a:active {
+	border: 1px solid #999;
+	border-top: 1px solid #888;
+	border-bottom: 1px solid #888;
+ }
