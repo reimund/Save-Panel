@@ -1,0 +1,3 @@
+#!/bin/zsh
+scp savepanel.zxp reimund@lumens.se:/var/www/lumens.se/lumens/media/files
+mv savepanel.zxp ~/Projects/lumens/website/lumens/media/files
