@@ -20,6 +20,12 @@ function pathFix()
 
 	if (file.open('w'))
 		file.write(SP_SETTINGS_PATH);
+	else {
+		alert('Failed to apply CS5 fix. Did you forget to run Photoshop as administrator?');
+		return false;
+	}
+
+	return true;
 }
 
 /**
@@ -39,5 +45,6 @@ function presetFix()
 	}
 }
 
-pathFix();
 presetFix();
+if (pathFix())
+	alert('Fix applied successfully. Please restart Photoshop.');
