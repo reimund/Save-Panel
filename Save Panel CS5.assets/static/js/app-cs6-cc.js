@@ -40,7 +40,7 @@ jQuery(document).ready(function($) {
 function update() {
 	try {
 		_Adobe.includeJSXFile('static/js/ps/interact.js');
-		url = _Adobe.JSXInterface.call('getSettingsPath') + 'buttons.html';
+		url = 'file:///' + _Adobe.JSXInterface.call('getSettingsPath') + 'buttons.html';
 	} catch (e) {
 		alert(e);
 	}
