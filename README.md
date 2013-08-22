@@ -14,7 +14,7 @@ process by allowing you direct access to save presets via a custom panel.
 
 
 Features
--------
+--------
 - Create save presets.
 - Automatically creates missing directories.
 - Save to either a path relative to the current file or to an absolute file.
@@ -31,8 +31,8 @@ Features
 Installation
 ------------
 1.	Copy __scripts/Save Panel__ to __<your photoshop directory>/Presets/Scripts__.
-2.	Open __Save Panel.gpc__ in Adobe Configurator and export it to __<your photoshop
-directory>/Plug-ins/Panels__.
+2.	Open __Save Panel <version>.gpc__ in Adobe Configurator and export it to
+	__<your photoshop directory>/Plug-ins/Panels__.
 3.	Enable the panel via __Window/Extensions/Save Panel__ in Photoshop.
 
 
