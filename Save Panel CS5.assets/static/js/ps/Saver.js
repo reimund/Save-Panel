@@ -98,12 +98,15 @@ sp.Saver.prototype.applyCustomAction = function(doc, set, action)
 	activeDocument = doc;
 	app.doAction(action, set);
 	activeDocument = tmp;
-
 }
 
 sp.Saver.prototype.resizeToFit = function(doc, width, height)
 {
-	var docWidth, docHeight, scale, tmpHeight;
+	var docWidth, docHeight, scale, tmpHeight, rulerUnits;
+
+	// Temporary set units to pixels.
+	rulerUnits = preferences.rulerUnits;
+	preferences.rulerUnits = Units.PIXELS;
 
 	docWidth  = parseFloat(doc.width);
 	docHeight = parseFloat(doc.height);
@@ -131,6 +134,9 @@ sp.Saver.prototype.resizeToFit = function(doc, width, height)
 	newHeight = scale * docHeight;
 		
 	doc.resizeImage(newWidth, newHeight, null, preferences.interpolation);
+
+	// Restore ruler units.
+	preferences.rulerUnits = rulerUnits;
 }
 
 /**
