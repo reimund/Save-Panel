@@ -1,0 +1,73 @@
+body {
+	background: #b8b8b8;
+	color: #222;
+}
+
+span.btn {
+	background-image: linear-gradient(bottom, rgb(191,191,191) 0%, rgb(231,231,231) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(191,191,191) 0%, rgb(231,231,231) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(191,191,191) 0%, rgb(231,231,231) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(191,191,191) 0%, rgb(231,231,231) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(191,191,191) 0%, rgb(231,231,231) 100%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(191,191,191)),
+		color-stop(1, rgb(231,231,231))
+	);
+	border: 1px solid #5e5e5e;
+}
+
+span.btn a {
+	border: 1px solid #e0e0e0;
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #d7d7d7;
+	color: #222;
+	padding: 0 9px 0 9px;
+	height: 20px;
+	line-height: 21px;
+}
+
+span.btn:hover {
+	background-image: linear-gradient(bottom, rgb(200,200,200) 0%, rgb(244,244,244) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(200,200,200) 0%, rgb(244,244,244) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(200,200,200) 0%, rgb(244,244,244) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(200,200,200) 0%, rgb(244,244,244) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(200,200,200) 0%, rgb(244,244,244) 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(200,200,200)),
+		color-stop(1, rgb(244,244,244))
+	);
+}
+
+span.btn:active {
+	background-image: linear-gradient(bottom, rgb(122,122,122) 0%, rgb(161,161,161) 73%);
+	background-image: -o-linear-gradient(bottom, rgb(122,122,122) 0%, rgb(161,161,161) 73%);
+	background-image: -moz-linear-gradient(bottom, rgb(122,122,122) 0%, rgb(161,161,161) 73%);
+	background-image: -webkit-linear-gradient(bottom, rgb(122,122,122) 0%, rgb(161,161,161) 73%);
+	background-image: -ms-linear-gradient(bottom, rgb(122,122,122) 0%, rgb(161,161,161) 73%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(122,122,122)),
+		color-stop(0.73, rgb(161,161,161))
+	);
+}
+
+span.btn a:active {
+	border: 1px solid #999;
+	border-top: 1px solid #888;
+	border-bottom: 1px solid #888;
+ }
+
+div.subpanel p { background-image: url(../img/arrow-collapsed-light.png); }
+div.subpanel.expanded p { background-image: url(../img/arrow-expanded-light.png); }
+div.statusbar div { background-color: rgba(125, 125, 125, 0.8); }
+div.statusbar { color: #eee; }
