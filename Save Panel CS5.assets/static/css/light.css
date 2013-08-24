@@ -65,3 +65,9 @@ span.btn a:active {
 	border-top: 1px solid #888;
 	border-bottom: 1px solid #888;
  }
+
+div.subpanel p { background-image: url(../img/arrow-collapsed-light.png); }
+div.subpanel.expanded p { background-image: url(../img/arrow-expanded-light.png); }
+div.statusbar div { background-color: rgba(185, 185, 185, 0.8); }
+div.statusbar div { background-color: rgba(65, 65, 65, 0.8); }
+div.statusbar { color: #eee; }

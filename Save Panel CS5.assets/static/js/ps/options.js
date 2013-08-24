@@ -337,7 +337,6 @@ SavePanelOptions.prototype.changed = function()
 {
 	this.w.mainGroup.editPreset.buttonGroup.s.visible = false;
 	this.w.mainGroup.editPreset.filename.s2.text      = this.getFilename();
-	//this.w.layout.layout(true);
 }
 
 SavePanelOptions.prototype.addPreset = function(preset)
@@ -516,6 +515,7 @@ SavePanelOptions.prototype.serializeInterface = function()
 			grouped[self.presets[i].heading] = [{ data: self.presets[i], index: i }];
 
 	for (key in grouped) {
+		html += '<div class="subpanel expanded">\n';
 		html += '<p>' + key + '</p>\n';
 		html += '<div class="buttons">\n';
 		for (i in grouped[key]) {
@@ -529,8 +529,9 @@ SavePanelOptions.prototype.serializeInterface = function()
 				scriptLink = '';
 
 			html  += '<span class="btn"><a class="save" ' + scriptLink + 'data-preset="\'' + Json.encode(preset.data).replace(/"/g, '&quot;') + '">';
-			html  += preset.data.name.replace(/\s+/g, '&nbsp;') + '</a></span>\n';
+			html  += preset.data.name.replace(/\s/g, '&nbsp;') + '</a></span>\n';
 		}
+		html += '</div>\n';
 		html += '</div>\n';
 	}
 

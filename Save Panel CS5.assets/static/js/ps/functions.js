@@ -2,13 +2,13 @@
 //@include Saver.js
 
 this.se_lumens_savepanel = {
-	save: function(args) {
-		var preset, s;
+	//save: function(args) {
+		//var preset, s;
 
-		preset = Json.eval(args[0]);
-		s      = new sp.Saver();
-		s.save(preset);
-	},
+		//preset = Json.eval(args[0]);
+		//s      = new sp.Saver();
+		//s.save(preset);
+	//},
 	updatePanelSize: function(args) {
 		var dir, file, lines, line;
 

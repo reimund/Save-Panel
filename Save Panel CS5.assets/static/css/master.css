@@ -1,5 +1,5 @@
 body {
-	margin: 8px 12px 12px 12px;
+	margin: 8px 0 12px 0;
 	background: #535353;
 	overflow: hidden;
 	font-size: 10px;
@@ -23,8 +23,18 @@ span.btn a {
 	text-decoration: none;
 }
 
-span.btn:hover { cursor: default; }
+div.subpanel p {
+	background: transparent 0 6px no-repeat;
+	height: 20px;
+	padding: 0.3em 0 0.3em 11px;
+	margin: 0 0 0 -10px;
+}
 
+div.main-container { margin: 0 12px 0 12px; }
+div.subpanel p:hover { opacity: 0.7; }
+div.subpanel.expanded p { background: transparent 0 7px no-repeat; }
+/*div.buttons { width: 175px; }*/
+span.btn:hover { cursor: default; }
 div.options { margin: 2.5em 0 0 0; }
 
 span.btn a.options {
@@ -38,6 +48,37 @@ div.actions {
 	margin: 0 auto 0 auto;
 }
 
-div.actions {
-	text-align: left;
+div.actions { text-align: left; }
+
+div.statusbar {
+	padding: 0;
+	margin: 1em 2em 0 0;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+div.statusbar div { margin: 0 2em 0 0; }
+
+div.statusbar p {
+	margin: 0 0 0 3px;
+	padding: 0;
+	line-height: 2em;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+div.statusbar p.success span.icon,
+div.statusbar p.error span.icon {
+	background: url(../img/checkmark.png) 2px 2px no-repeat;
+	padding: 0 0 0 1.7em;
+}
+
+div.letter-test div {
+	visibility: hidden;
+	width: auto;
+	position: absolute;
+	overflow: hidden;
+	white-space: nowrap;
+	padding-right: 2em;
 }

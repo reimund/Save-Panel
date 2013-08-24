@@ -11,11 +11,12 @@ sp.Saver = function() { }
  */
 sp.Saver.prototype.save = function(options)
 {
-	var doc, formatOptions, workDir, name, dest, dup, beforeState, f, self;
+	var self, doc, formatOptions, workDir, name, dest, dup, beforeState, f, jpgSuffix, savedFiles, relDest;
 
-	if (0 == documents.length) {
-		alert('Nothing to save.');
-		return;
+	if (0 == documents.length) { 
+		if (13 > parseFloat(app.version))
+			alert('Nothing to save.');
+		return [{ success: false, message: 'Nothing to save' }];
 	}
 	
 	self          = this;
@@ -32,7 +33,9 @@ sp.Saver.prototype.save = function(options)
 	root       = self.getRoot(options);
 	name       = options.filename.replace('$name', sp.basename(doc.name)); // Don't allow filenames longer than 255 characters.
 	destDir    = options.path;
-	jpgsuffix  = '';
+	relDest    = destDir;
+	jpgSuffix  = '';
+	result = [];
 
 	if (sp.isRelative(options.path))
 		if (!root)
@@ -44,10 +47,12 @@ sp.Saver.prototype.save = function(options)
 		dest = destDir + '/' + name;
 	else
 		dest = sp.nextFilename(destDir, name, options.outputFormats, false);
+	
+	relDest = relDest + '/' + new File(dest).name;
 
 	// Do we save two jpegs? Then add a suffix to the save for web file.
 	if (options.outputFormats['jpg'] && options.outputFormats['webjpg'])
-		jpgsuffix  = '_web';
+		jpgSuffix = '_web';
 	
 	self.createDirectories(new File(dest).path);
 
@@ -65,11 +70,16 @@ sp.Saver.prototype.save = function(options)
 		for (format in options.outputFormats) {
 			var fmtOptions = formatOptions[format];
 
-			if (options.outputFormats[format])
-				if ('webjpg' == format)
-					doc.exportDocument(new File(dest + jpgsuffix + '.' + fmtOptions.extension), ExportType.SAVEFORWEB, fmtOptions);
-				else
+			if (options.outputFormats[format]) {
+				if ('webjpg' == format) {
+					doc.exportDocument(new File(dest + jpgSuffix + '.' + fmtOptions.extension), ExportType.SAVEFORWEB, fmtOptions);
+					result.push({ success: true, message: relDest + jpgSuffix + '.' + fmtOptions.extension });
+				} else {
 					doc.saveAs(new File(dest), fmtOptions, true, Extension.LOWERCASE);
+					result.push({ success: true, message: relDest + '.' + fmtOptions.extension });
+				}
+
+			}
 		}
 	}
 
@@ -80,6 +90,9 @@ sp.Saver.prototype.save = function(options)
 
 	if (options.close)
 		doc.close(SaveOptions.DONOTSAVECHANGES);
+	
+
+	return result;
 }
 
 sp.Saver.prototype.applyAction = function(doc, action)
@@ -251,6 +264,5 @@ sp.Saver.prototype.getSfwSaveOptions = function()
 		//args: ['Reimund', 'Look 1']
 	//},
 //}
-
 //var s = new sp.Saver();
 //s.save(preset);

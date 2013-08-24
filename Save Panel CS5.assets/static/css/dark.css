@@ -57,3 +57,8 @@ span.btn:active {
 }
 
 span.btn:active a { border-top: 1px solid #333; }
+div.statusbar p { color: #999; }
+div.statusbar p em { color: #c0c0c0; }
+div.subpanel p { background-image: url(../img/arrow-collapsed-dark.png); }
+div.subpanel.expanded p { background-image: url(../img/arrow-expanded-dark.png); }
+div.statusbar div { background-color: rgba(65, 65, 65, 0.8); }

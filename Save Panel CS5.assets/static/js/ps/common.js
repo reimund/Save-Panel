@@ -148,7 +148,4 @@ sp.scriptToPreset = function(script) {
 	presets     = sp.loadPresets();
 
 	return presets[presetId];
-
-	//$.writeln(presetId);
-	//$.writeln(preset);
 }
