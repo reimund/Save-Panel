@@ -1,7 +1,7 @@
 Save Panel
 ==========
 
-Version 0.9.6 - Wed 21 Aug 2013
+Version 0.9.7 - Sat 24 Aug 2013
 
 by Reimund Trost <reimund@code7.se> 
 Website <http://lumens.se/tools/savepanel/>
@@ -38,6 +38,12 @@ Installation
 
 Changelog
 =========
+
+0.9.7
+-----
+- Added statusbar (CS6 & later only).
+- Added ability to collapse button groups.
+- Complete color theme support (light/medium/dark/darker now available).
 
 0.9.6
 -----
