@@ -35,7 +35,8 @@ jQuery(document).ready(function($) {
 			_Adobe.invokeScriptFile(script);
 			location.reload(true);
 		} catch (e) {
-			alert(e);
+			//alert(e);
+			console.log(e);
 		}
 	});
 
@@ -127,7 +128,7 @@ function update() {
 				$('div.presets').empty().append(data);
 			},
 			error: function(xhr, textStatus, errorThrown ) {
-				alert(xhr.status);
+				//alert(xhr.status);
 			},
 		});
 
@@ -149,7 +150,7 @@ function update() {
 				}
 			},
 			error: function(xhr, textStatus, errorThrown ) {
-				alert(xhr.status);
+				//alert(xhr.status);
 			},
 		});
 	} catch (e) {
