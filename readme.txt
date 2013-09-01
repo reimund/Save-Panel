@@ -35,10 +35,8 @@ Before installing, make sure any old Save Panel files have been removed.
 Photoshop CS 6 / CC
 -------------------
 
-1. Copy the cs6 directory (residing in the "panels" directory) to 
-   <Photoshop>/Plug-ins/Panels. Rename it to "Save Panel".
-
-   You should be left with: <Photoshop>/Plug-ins/Panels/Save Panel.
+1. Copy the Save Panel directory (residing in the "panels/cs6" directory) to 
+   <Photoshop>/Plug-ins/Panels.
 
 2. Run Photoshop and show the panel by going to Window/Extensions/Save Panel.
 
@@ -48,13 +46,11 @@ Photoshop CS 5
 
 The steps are similar for CS5, but you need a few extra steps:
 
-1. Copy the cs5 directory (residing in the "panels" directory) to 
-   <Photoshop>/Plug-ins/Panels. Rename it to "Save Panel".
+1. Copy the Save Panel directory (residing in the "panels/cs5" directory) to 
+   <Photoshop>/Plug-ins/Panels.
 
 2. Copy the Save Panel directory (residing in the "scripts" directory) to
    <Photoshop CS5>/Presets/Scripts.
-
-   Leaving you with: <Photoshop>/Presets/Scripts/Save Panel.
 
 3. Start Photoshop as administrator.
 

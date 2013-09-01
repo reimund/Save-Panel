@@ -29,8 +29,8 @@
 
     <files>
 		<file source="icon.png" destination="$ExtensionSpecificEMStore/icon.png"  />
-		<file source="panels/cs5/content" destination="$panels/Save Panel" minVersion="12" maxVersion="12.99" />
-        <file source="panels/cs6/content" destination="$panels/Save Panel" minVersion="13" />
+		<file source="panels/cs5/Save Panel/content" destination="$panels/Save Panel" minVersion="12" maxVersion="12.99" />
+        <file source="panels/cs6/Save Panel/content" destination="$panels/Save Panel" minVersion="13" />
 		<file source="scripts/Save Panel" destination="$scripts" minVersion="12" maxVersion="12.99"/>
     </files>
 
