@@ -23,7 +23,8 @@ sp.basename = function(file)
  */
 sp.extension = function(file)
 {
-	return file.match(/\.([^\..]+)$/);
+	var matches = file.match(/\.([^\..]+)$/);
+	return (matches != null && matches.length > 1) ? matches[1] : false;
 }
 
 /**
@@ -42,7 +43,7 @@ sp.arraysEqual = function(arr1, arr2) {
 
 sp.isRelative = function(path)
 {
-	if ('/' == path[0] || (':' == path[1] && '\\' == path[2]))
+	if ('/' == path[0] || '~' == path[0] || (':' == path[1] && '\\' == path[2]))
 		return false;
 	return true;
 }

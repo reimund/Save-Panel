@@ -11,7 +11,7 @@ sp.Saver = function() { }
  */
 sp.Saver.prototype.save = function(options)
 {
-	var self, doc, formatOptions, workDir, name, dest, dup, beforeState, f, jpgSuffix, savedFiles, relDest;
+	var self, doc, root, name, destDir, formats, workDir, dest, dup, beforeState, f, jpgSuffix, savedFiles, relDest;
 
 	if (0 == documents.length) { 
 		if (13 > parseFloat(app.version))
@@ -22,39 +22,34 @@ sp.Saver.prototype.save = function(options)
 	self          = this;
 	self.settings = options;
 
-	formatOptions = {
+	formats = {
 		'jpg': self.getJpgSaveOptions(),
 		'psd': self.getPsdSaveOptions(),
 		'png': self.getPngSaveOptions(),
 		'webjpg': self.getSfwSaveOptions()
 	};
 
-	doc        = activeDocument;
-	root       = self.getRoot(options);
-	name       = options.filename.replace('$name', sp.basename(doc.name)); // Don't allow filenames longer than 255 characters.
-	destDir    = options.path;
-	relDest    = destDir;
-	jpgSuffix  = '';
-	result = [];
+	doc       = activeDocument;
+	name      = options.filename.replace('$name', sp.basename(doc.name)); // Don't allow filenames longer than 255 characters.
+	destDir   = self.getDestDir(options.path);
+	//jpgSuffix = '';
+	result    = [];
 
-	if (sp.isRelative(options.path))
-		if (!root)
-			return alert('Cannot save an unsaved document to a relative path.');
-		else
-			destDir = root + '/' + destDir;
+	if (!destDir)
+		return alert('Cannot save an unsaved document to a relative path.');
 
 	if (options.overwrite)
 		dest = destDir + '/' + name;
 	else
 		dest = sp.nextFilename(destDir, name, options.outputFormats, false);
 	
-	relDest = relDest + '/' + new File(dest).name;
+	relDest = options.path + '/' + new File(dest).name;
 
 	// Do we save two jpegs? Then add a suffix to the save for web file.
 	if (options.outputFormats['jpg'] && options.outputFormats['webjpg'])
 		jpgSuffix = '_web';
 	
-	self.createDirectories(new File(dest).path);
+	self.createDirectories(destDir);
 
 	// Remember what state we were in before resizing.
 	// If we've already applied a save preset use the state before the last
@@ -65,20 +60,27 @@ sp.Saver.prototype.save = function(options)
 		beforeState = doc.historyStates.length - 1;
 
 	f = function() {
+		var formatOptions, formatDest;
+
 		self.applyAction(doc, options.action);
 
 		for (format in options.outputFormats) {
-			var fmtOptions = formatOptions[format];
-
+			formatOptions = formats[format];
+			formatDest    = dest;
+			jpgSuffix     = '';
+			
 			if (options.outputFormats[format]) {
-				if ('webjpg' == format) {
-					doc.exportDocument(new File(dest + jpgSuffix + '.' + fmtOptions.extension), ExportType.SAVEFORWEB, fmtOptions);
-					result.push({ success: true, message: relDest + jpgSuffix + '.' + fmtOptions.extension });
-				} else {
-					doc.saveAs(new File(dest), fmtOptions, true, Extension.LOWERCASE);
-					result.push({ success: true, message: relDest + '.' + fmtOptions.extension });
-				}
+				if ('webjpg' == format && options.outputFormats['jpg'])
+					jpgSuffix = '_web';
 
+				formatDest = dest + jpgSuffix + '.' + formatOptions.extension;
+
+				if (doc.fullName == formatDest)
+					activeDocument.save();
+				else
+					self.saveFile(formatOptions, formatDest);
+
+				result.push({ success: true, message: relDest + jpgSuffix + '.' + formatOptions.extension });
 			}
 		}
 	}
@@ -94,6 +96,71 @@ sp.Saver.prototype.save = function(options)
 
 	return result;
 }
+
+sp.Saver.prototype.saveFile = function(format, dest)
+{
+	if ('ExportOptionsSaveForWeb' == format.typename)
+		activeDocument.exportDocument(new File(dest), ExportType.SAVEFORWEB, format);
+	else
+		activeDocument.saveAs(new File(dest), format, true, Extension.LOWERCASE);
+}
+
+sp.Saver.prototype.getDestDir = function(targetPath)
+{
+	var basePath;
+
+	if ('psd' == sp.extension(activeDocument.fullName.name))
+		basePath = this.getOriginalDir(activeDocument.path);
+	else
+		basePath = activeDocument.path;
+
+	if (sp.isRelative(targetPath))
+		return basePath + '/' + targetPath;
+	else
+		return targetPath;
+}
+
+/**
+ * Try to work out the directory of the original file.
+ *
+ * Looks through all presets and see if any of the directory patterns match the
+ * location of the current document. If we get a match, we traverse back and
+ * return the resulting directory.
+ */
+sp.Saver.prototype.getOriginalDir = function()
+{
+	var docDir, root, presets, presetDirs, realDirs, traverse;
+
+	try {
+		docDir = new Folder(activeDocument.path);
+	} catch (e) {
+		return false;
+	}
+
+	root     = docDir;
+	presets  = sp.loadPresets();
+	traverse = 0;
+
+	for (i in presets) {
+		if(!sp.isRelative(presets[i].path))
+			continue;
+
+		presetDirs = presets[i].path.split(/[\/\\]/);
+		realDirs   = docDir.fullName.split(/[\/\\]/);
+		realDirs.splice(0, realDirs.length - presetDirs.length);
+
+		if (sp.arraysEqual(presetDirs, realDirs)) {
+			traverse = presetDirs.length;
+			break;
+		}
+	}
+
+	for (i = 0; i < traverse; i++)
+		root = root.parent;
+
+	return root;
+}
+
 
 sp.Saver.prototype.applyAction = function(doc, action)
 {
@@ -152,53 +219,15 @@ sp.Saver.prototype.resizeToFit = function(doc, width, height)
 	preferences.rulerUnits = rulerUnits;
 }
 
-/**
- * Try to work out the root directory.
- *
- * Looks through all presets and see if any of the directory patterns match the
- * location of the current document. If we get a match, we traverse back and
- * return the resulting directory.
- */
-sp.Saver.prototype.getRoot = function(options)
-{
-	var root, docDir, presets, preset_dirs, real_dirs, traverse;
-
-	try {
-		docDir = new Folder(activeDocument.path);
-	} catch (e) {
-		return false;
-	}
-
-	root     = docDir;
-	presets  = sp.loadPresets();
-	traverse = 0;
-
-	for (i in presets) {
-		preset_dirs = presets[i].path.split(/[\/\\]/);
-		real_dirs   = docDir.fullName.split(/[\/\\]/);
-		real_dirs.splice(0, real_dirs.length - preset_dirs.length);
-
-		if (sp.arraysEqual(preset_dirs, real_dirs)) {
-			traverse = preset_dirs.length;
-			break;
-		}
-	}
-
-	for (i = 0; i < traverse; i++)
-		root = root.parent;
-
-	return root;
-}
-
 sp.Saver.prototype.createDirectories = function(path)
 {
 	var dirs, current;
 
-	current = new Folder(activeDocument.path);
-	dirs    = path.substring(current.fullName.length).split(/[\/\\]/);
+	dirs    = path.split(/[\/\\]/);
+	current = new Folder(dirs[0]);
 
-	for (i in dirs) {
-		current = new Folder(current.fullName + '/' + dirs[i]);
+	for (i = 1; i < dirs.length; i++) {
+		current = new Folder(current.fullName + '/' + dirs[parseInt(i)]);
 		if (!current.exists)
 			current.create();
 	}
@@ -247,6 +276,8 @@ sp.Saver.prototype.getSfwSaveOptions = function()
 	return options;
 }
 
+//presets = sp.loadPresets();
+//preset = presets[4];
 //preset = {
 	//name: 'full',
 	//path: 'jpeg/full',
