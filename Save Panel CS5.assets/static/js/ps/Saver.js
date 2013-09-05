@@ -32,7 +32,6 @@ sp.Saver.prototype.save = function(options)
 	doc       = activeDocument;
 	name      = options.filename.replace('$name', sp.basename(doc.name)); // Don't allow filenames longer than 255 characters.
 	destDir   = self.getDestDir(options.path);
-	//jpgSuffix = '';
 	result    = [];
 
 	if (!destDir)
@@ -44,11 +43,6 @@ sp.Saver.prototype.save = function(options)
 		dest = sp.nextFilename(destDir, name, options.outputFormats, false);
 	
 	relDest = options.path + '/' + new File(dest).name;
-
-	// Do we save two jpegs? Then add a suffix to the save for web file.
-	if (options.outputFormats['jpg'] && options.outputFormats['webjpg'])
-		jpgSuffix = '_web';
-	
 	self.createDirectories(destDir);
 
 	// Remember what state we were in before resizing.
@@ -70,6 +64,7 @@ sp.Saver.prototype.save = function(options)
 			jpgSuffix     = '';
 			
 			if (options.outputFormats[format]) {
+				// Do we save two jpegs? Then add a suffix to the save for web file.
 				if ('webjpg' == format && options.outputFormats['jpg'])
 					jpgSuffix = '_web';
 

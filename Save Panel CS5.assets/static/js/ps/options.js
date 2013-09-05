@@ -308,7 +308,13 @@ SavePanelOptions.prototype.setupEvents = function()
 	panel.quality.slider.onChange           = function(e) { self.changed(); panel.quality.e.text        = Math.round(this.value); };
 	panel.quality.slider.onChanging         = function(e) { self.changed(); panel.quality.e.text        = Math.round(this.value); };
 	panel.quality.e.onChange                = function(e) { self.changed(); panel.quality.slider.value  = Math.round(Number(this.text)); };
-	panel.buttonGroup.g.g.save.onClick      = function(e) { self.changed(); panel.buttonGroup.s.visible = self.updatePreset(); };
+	panel.buttonGroup.g.g.save.onClick      = function(e) {
+		self.changed();
+		if (self.presets.length == 0)
+			panel.buttonGroup.g.g.create.notify('onClick');
+			
+		panel.buttonGroup.s.visible = self.updatePreset();
+	};
 	panel.buttonGroup.g.g.create.onClick    = function(e) {
 		self.changed();
 		panel.index = listPanel.list.items.length;
@@ -492,6 +498,9 @@ SavePanelOptions.prototype.removePreset = function(preset)
 			self.presets.splice(i, 1);
 			break;
 		}
+
+	if (null != list.selection)
+		self.currentPreset = self.presets[list.selection.index];
 
 	// Update ui with blank preset.
 	if (null == list.selection)
