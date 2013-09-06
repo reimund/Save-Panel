@@ -1,7 +1,7 @@
 Save Panel
 ==========
 
-Version 0.9.8 - Fri 6 Sep 2013
+Version 1.0.0 - Fri 6 Sep 2013
 
 by Reimund Trost <reimund@code7.se> 
 Website <http://lumens.se/tools/savepanel/>
@@ -39,7 +39,7 @@ Installation
 Changelog
 =========
 
-0.9.8
+1.0.0
 -----
 - Save button now creates new preset if no prior presets exist.
 - Fixed some issues with absolute paths.

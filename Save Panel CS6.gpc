@@ -2,7 +2,7 @@
 <gpc defaultLocale="sv_SE" version="3" keySequence="71" currentLocale="sv_SE">
   <product appid="PHSP" version="13" name="Photoshop CS6"/>
   <target id="PHSP-13"/>
-  <ConfiguratorPanel name="Save Panel" width="210" height="200" init="doInit" close="doClose" persistent="true" extensionId="se.lumens.savepanel" extensionVersion="0.9.6" menuName="Save Panel" maxWidth="500" normalIcon="res/res1_icon.png" darkNormalIcon="res/res2_icon.png" minWidth="210" minHeight="10" maxHeight="1000">
+  <ConfiguratorPanel name="Save Panel" width="210" height="200" init="doInit" close="doClose" persistent="true" extensionId="se.lumens.savepanel" extensionVersion="1.0.0" menuName="Save Panel" maxWidth="500" normalIcon="res/res1_icon.png" darkNormalIcon="res/res2_icon.png" minWidth="210" minHeight="10" maxHeight="1000">
     <extensionDescription><![CDATA[Save faster.]]></extensionDescription>
     <extensionAuthor><![CDATA[Reimund Trost]]></extensionAuthor>
     <onInit><![CDATA[]]></onInit>
