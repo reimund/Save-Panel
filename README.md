@@ -1,7 +1,7 @@
 Save Panel
 ==========
 
-Version 1.0.0 - Fri 6 Sep 2013
+Version 1.0.1 - Wed 11 Sep 2013
 
 by Reimund Trost <reimund@code7.se> 
 Website <http://lumens.se/tools/savepanel/>
@@ -38,6 +38,10 @@ Installation
 
 Changelog
 =========
+
+1.0.1
+-----
+- Fixed path issue preventing save in some settings.
 
 1.0.0
 -----
