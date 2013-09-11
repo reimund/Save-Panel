@@ -109,7 +109,7 @@ sp.Saver.prototype.getDestDir = function(targetPath)
 	else
 		basePath = activeDocument.path;
 
-	if (sp.isRelative(targetPath))
+	if (sp.isRelative(targetPath) && '/' != basePath)
 		return basePath + '/' + targetPath;
 	else
 		return targetPath;
@@ -219,7 +219,7 @@ sp.Saver.prototype.createDirectories = function(path)
 	var dirs, current;
 
 	dirs    = path.split(/[\/\\]/);
-	current = new Folder(dirs[0]);
+	current = new Folder('/' + dirs[0]);
 
 	for (i = 1; i < dirs.length; i++) {
 		current = new Folder(current.fullName + '/' + dirs[parseInt(i)]);
@@ -271,8 +271,9 @@ sp.Saver.prototype.getSfwSaveOptions = function()
 	return options;
 }
 
-//presets = sp.loadPresets();
-//preset = presets[4];
+presets = sp.loadPresets();
+preset = presets[0];
+
 //preset = {
 	//name: 'full',
 	//path: 'jpeg/full',
@@ -290,5 +291,6 @@ sp.Saver.prototype.getSfwSaveOptions = function()
 		//args: ['Reimund', 'Look 1']
 	//},
 //}
-//var s = new sp.Saver();
-//s.save(preset);
+
+var s = new sp.Saver();
+s.save(preset);
