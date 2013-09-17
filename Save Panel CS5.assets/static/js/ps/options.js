@@ -318,7 +318,7 @@ SavePanelOptions.prototype.setupEvents = function()
 			
 		panel.buttonGroup.s.visible = self.updatePreset();
 	};
-	listPanel.buttons.create.onClick    = function(e) {
+	listPanel.buttons.create.onClick        = function(e) {
 		self.changed();
 		panel.index = listPanel.list.items.length;
 		self.addPreset(self.createPreset());
@@ -327,7 +327,7 @@ SavePanelOptions.prototype.setupEvents = function()
 	};
 
 	listPanel.list.onChange                 = function(e) { self.redrawPreset(self.presets[listPanel.list.selection.index]); self.changed(); };
-	listPanel.buttons.remov.onClick                 = function(e) { self.removePreset(self.currentPreset); self.changed(); };
+	listPanel.buttons.remov.onClick         = function(e) { self.removePreset(self.currentPreset); self.changed(); };
 	self.w.buttonGroup.cancelButton.onClick = function(e) { self.w.close(2); };
 
 	self.w.buttonGroup.okButton.onClick     = function(e)
@@ -454,6 +454,7 @@ SavePanelOptions.prototype.changeAction = function(e)
 				actionArgs.actions.add('item', actionSets[this.selection.index].children[i].name);
 		}
 		actionArgs.actions.onChange = function() { w.mainGroup.editPreset.buttonGroup.s.visible = false; };
+		actionArgs.sets.notify('onChange');
 	}
 	container.actionArgs = actionArgs;
 	w.layout.layout(true);
