@@ -70,10 +70,7 @@ sp.Saver.prototype.save = function(options)
 
 				formatDest = dest + jpgSuffix + '.' + formatOptions.extension;
 
-				if (doc.fullName == formatDest)
-					activeDocument.save();
-				else
-					self.saveFile(formatOptions, formatDest);
+				self.saveFile(formatOptions, formatDest);
 
 				result.push({ success: true, message: relDest + jpgSuffix + '.' + formatOptions.extension });
 			}
@@ -104,10 +101,15 @@ sp.Saver.prototype.getDestDir = function(targetPath)
 {
 	var basePath;
 
-	if ('psd' == sp.extension(activeDocument.fullName.name))
-		basePath = this.getOriginalDir(activeDocument.path);
-	else
-		basePath = activeDocument.path;
+	try {
+		if ('psd' == sp.extension(activeDocument.fullName.name))
+			basePath = this.getOriginalDir(activeDocument.path);
+		else
+			basePath = activeDocument.path;
+	} catch (e) {
+		if (sp.isRelative(targetPath))
+			return false;
+	}
 
 	if (sp.isRelative(targetPath) && '/' != basePath)
 		return basePath + '/' + targetPath;
@@ -271,8 +273,11 @@ sp.Saver.prototype.getSfwSaveOptions = function()
 	return options;
 }
 
-presets = sp.loadPresets();
-preset = presets[0];
+//presets = sp.loadPresets();
+//for (i in presets) {
+	//if ('Desktop' == presets[i].name)
+		//preset = presets[i];
+//}
 
 //preset = {
 	//name: 'full',
@@ -292,5 +297,5 @@ preset = presets[0];
 	//},
 //}
 
-var s = new sp.Saver();
-s.save(preset);
+//var s = new sp.Saver();
+//s.save(preset);
