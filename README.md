@@ -41,7 +41,7 @@ Changelog
 
 1.0.2
 -----
-- Fixed but when saving unsaved document to absolute path.
+- Fixed problem with saving an unsaved document to an absolute path.
 - Fixed issue with Custom action dropdowns not being properly populated.
 - Moved New button.
 
