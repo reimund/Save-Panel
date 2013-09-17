@@ -29,7 +29,11 @@ var SavePanelOptions = function()
 				text: 'Saved presets', \
 				presets: Group { \
 				}, \
-				remov: Button { text: 'Remove' }, \
+				buttons: Group { \
+					alignChildren: 'row', \
+					create: Button { text: 'New' }, \
+					remov: Button { text: 'Remove' }, \
+				} \
 			}\
 			editPreset: Panel { \
 				preferredSize: [540, 20], \
@@ -131,10 +135,9 @@ var SavePanelOptions = function()
 					g: Group { \
 						orientation: 'column', \
 						alignChildren: 'right', \
-						margins: [365, 0, 0, 0], \
+						margins: [415, 0, 0, 0], \
 						g: Group { \
 							orientation: 'row', \
-							create: Button { text: 'New' }, \
 							save: Button { text: 'Save' }, \
 						}, \
 					}, \
@@ -311,11 +314,11 @@ SavePanelOptions.prototype.setupEvents = function()
 	panel.buttonGroup.g.g.save.onClick      = function(e) {
 		self.changed();
 		if (self.presets.length == 0)
-			panel.buttonGroup.g.g.create.notify('onClick');
+			listPanel.buttons.create.notify('onClick');
 			
 		panel.buttonGroup.s.visible = self.updatePreset();
 	};
-	panel.buttonGroup.g.g.create.onClick    = function(e) {
+	listPanel.buttons.create.onClick    = function(e) {
 		self.changed();
 		panel.index = listPanel.list.items.length;
 		self.addPreset(self.createPreset());
@@ -324,7 +327,7 @@ SavePanelOptions.prototype.setupEvents = function()
 	};
 
 	listPanel.list.onChange                 = function(e) { self.redrawPreset(self.presets[listPanel.list.selection.index]); self.changed(); };
-	listPanel.remov.onClick                 = function(e) { self.removePreset(self.currentPreset); self.changed(); };
+	listPanel.buttons.remov.onClick                 = function(e) { self.removePreset(self.currentPreset); self.changed(); };
 	self.w.buttonGroup.cancelButton.onClick = function(e) { self.w.close(2); };
 
 	self.w.buttonGroup.okButton.onClick     = function(e)
