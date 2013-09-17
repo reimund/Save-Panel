@@ -3,7 +3,7 @@ Save Panel
 
 Version 1.0.2 - Tue 17 Sep 2013
 
-by Reimund Trost <reimund@code7.se> 
+by Reimund Trost <reimund@code7.se>  
 Website <http://lumens.se/tools/savepanel/>
 
 
