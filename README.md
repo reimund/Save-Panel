@@ -1,7 +1,7 @@
 Save Panel
 ==========
 
-Version 1.0.1 - Wed 11 Sep 2013
+Version 1.0.2 - Tue 17 Sep 2013
 
 by Reimund Trost <reimund@code7.se> 
 Website <http://lumens.se/tools/savepanel/>
@@ -38,6 +38,12 @@ Installation
 
 Changelog
 =========
+
+1.0.2
+-----
+- Fixed but when saving unsaved document to absolute path.
+- Fixed issue with Custom action dropdowns not being properly populated.
+- Moved New button.
 
 1.0.1
 -----
