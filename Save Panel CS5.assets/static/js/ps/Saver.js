@@ -247,6 +247,7 @@ sp.Saver.prototype.getPngSaveOptions = function()
 {
 	options = new PNGSaveOptions();
 	options.interlaced = false;
+	options.compression = 5;
 	options.extension = 'png';
 	return options;
 }
