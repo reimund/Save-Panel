@@ -1,7 +1,7 @@
 Save Panel
 ==========
 
-Version 1.0.3 - Wed 4 Dec 2013
+Version 1.0.4 - Wed 4 Dec 2013
 
 by Reimund Trost <reimund@code7.se>  
 Website <http://lumens.se/tools/savepanel/>
@@ -38,6 +38,10 @@ Installation
 
 Changelog
 =========
+
+1.0.4
+-----
+- Enabled png (lossless) compression.
 
 1.0.3
 -----
