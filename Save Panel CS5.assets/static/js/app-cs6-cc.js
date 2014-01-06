@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
 	$('span.btn a.options').on('click', function() {
 		var script;
 		try {
-			script = _Adobe.assetsPath.replace('file:///', '') + '/static/js/ps/options.js';
+			script = _Adobe.assetsPath.replace(/file:\/\/\/?/, '') + '/static/js/ps/options.js';
 			_Adobe.invokeScriptFile(script);
 			location.reload(true);
 		} catch (e) {
