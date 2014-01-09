@@ -220,7 +220,15 @@ sp.Saver.prototype.createDirectories = function(path)
 {
 	var dirs, current;
 
-	dirs    = path.split(/[\/\\]/);
+	dirs = path.split(/[\/\\]/);
+
+	// Take care of network paths on Windows beginning with a double-slash.
+	if ('' == dirs[0] && '' == dirs[1]) {
+        dirs[2] = '/' + dirs[2];
+        dirs.shift();
+        dirs.shift();
+	}
+
 	current = new Folder('/' + dirs[0]);
 
 	for (i = 1; i < dirs.length; i++) {
