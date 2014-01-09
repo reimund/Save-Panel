@@ -1,7 +1,7 @@
 Save Panel
 ==========
 
-Version 1.0.4 - Wed 4 Dec 2013
+Version 1.0.5 - Thur 9 Jan 2014
 
 by Reimund Trost <reimund@code7.se>  
 Website <http://lumens.se/tools/savepanel/>
@@ -38,6 +38,11 @@ Installation
 
 Changelog
 =========
+
+1.0.5
+-----
+- Fix issue breaking save on Windows network paths beginning with 
+  double-slash (//).
 
 1.0.4
 -----
