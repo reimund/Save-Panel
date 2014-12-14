@@ -15,21 +15,19 @@ function getSettingsPath()
 
 function save(args)
 {
-	var preset, s;
-
-	preset = Json.eval(args[0]);
-	s      = new sp.Saver();
+	var preset = Json.eval(args[0])
+	  , s      = new sp.Saver()
+	;
 	return Json.encode(s.save(preset));
 }
 
 function serializeUi(args)
 {
-	var file, collapsed;
+	var file = new File(SP_SETTINGS_PATH + 'ui.json')
+	  , collapsed = []
+	;
 
-	file = new File(SP_SETTINGS_PATH + 'ui.json');
-	collapsed = [];
-
-	for (i in args[0])
+	for (var i in args[0])
 		collapsed.push(args[0][i]);
 
 	if (file.open('w')) {
