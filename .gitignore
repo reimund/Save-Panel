@@ -1,1 +1,8 @@
 .DS_Store
+node_modules
+lumens.p12
+html5/build
+zxp
+docs
+configurator/upload
+
