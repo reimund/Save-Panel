@@ -11,38 +11,34 @@ sp.Saver = function() { }
  */
 sp.Saver.prototype.save = function(options)
 {
-	var self, doc, root, name, destDir, formats, workDir, dest, dup, beforeState, f, jpgSuffix, savedFiles, relDest, result;
-
 	if (0 == documents.length) { 
 		if (13 > parseFloat(app.version))
 			alert('Nothing to save.');
 		return [{ success: false, message: 'Nothing to save' }];
 	}
-	
-	self          = this;
-	self.settings = options;
 
-	formats = {
-		'jpg': self.getJpgSaveOptions(),
-		'psd': self.getPsdSaveOptions(),
-		'png': self.getPngSaveOptions(),
-		'webjpg': self.getSfwSaveOptions()
-	};
+	this.settings = options;
 
-	doc       = activeDocument;
-	name      = options.filename.replace('$name', sp.basename(doc.name)); // Don't allow filenames longer than 255 characters.
-	destDir   = self.getDestDir(options.path);
-	result    = [];
+	var self         = this
+	  , doc          = activeDocument
+	  , name         = options.filename.replace('$name', sp.basename(doc.name)) // Don't allow filenames longer than 255 characters.
+	  , destDir      = self.getDestDir(options.path)
+	  , dest         = options.overwrite ? destDir + '/' + name : sp.nextFilename(destDir, name, options.outputFormats, false)
+	  , beforeState  = null
+	  , jpgSuffix    = null
+	  , relativeDest = options.path + '/' + new File(dest).name
+	  , result       = []
+	  , formats      = {
+			'jpg': self.getJpgSaveOptions(),
+			'psd': self.getPsdSaveOptions(),
+			'png': self.getPngSaveOptions(),
+			'webjpg': self.getSfwSaveOptions()
+		}
+	;
 
 	if (!destDir)
 		return alert('Cannot save an unsaved document to a relative path.');
-
-	if (options.overwrite)
-		dest = destDir + '/' + name;
-	else
-		dest = sp.nextFilename(destDir, name, options.outputFormats, false);
 	
-	relDest = options.path + '/' + new File(dest).name;
 	self.createDirectories(destDir);
 
 	// Remember what state we were in before resizing.
@@ -53,7 +49,7 @@ sp.Saver.prototype.save = function(options)
 	else
 		beforeState = doc.historyStates.length - 1;
 
-	f = function() {
+	var f = function() {
 		var formatOptions, formatDest;
 
 		self.applyAction(doc, options.action);
@@ -72,7 +68,7 @@ sp.Saver.prototype.save = function(options)
 
 				self.saveFile(formatOptions, formatDest);
 
-				result.push({ success: true, message: relDest + jpgSuffix + '.' + formatOptions.extension });
+				result.push({ success: true, message: relativeDest + jpgSuffix + '.' + formatOptions.extension });
 			}
 		}
 	}
@@ -126,7 +122,7 @@ sp.Saver.prototype.getDestDir = function(targetPath)
  */
 sp.Saver.prototype.getOriginalDir = function()
 {
-	var docDir, root, presets, presetDirs, realDirs, traverse;
+	var docDir = null;
 
 	try {
 		docDir = new Folder(activeDocument.path);
@@ -134,16 +130,17 @@ sp.Saver.prototype.getOriginalDir = function()
 		return false;
 	}
 
-	root     = docDir;
-	presets  = sp.loadPresets();
-	traverse = 0;
+	var root     = docDir
+	  , presets  = sp.loadPresets()
+	  , traverse = 0
+	;
 
 	for (i in presets) {
 		if(!sp.isRelative(presets[i].path))
 			continue;
 
-		presetDirs = presets[i].path.split(/[\/\\]/);
-		realDirs   = docDir.fullName.split(/[\/\\]/);
+		var presetDirs = presets[i].path.split(/[\/\\]/);
+		var realDirs = docDir.fullName.split(/[\/\\]/);
 		realDirs.splice(0, realDirs.length - presetDirs.length);
 
 		if (sp.arraysEqual(presetDirs, realDirs)) {

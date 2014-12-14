@@ -17,9 +17,7 @@ setupEventHelper();
 
 var SavePanelOptions = function()
 {
-	var windowRes, w;
-
-	windowRes = "dialog { \
+	var windowRes = "dialog { \
 		orientation: 'row', \
 		alignChildren: 'top', \
 		mainGroup: Group { \
@@ -32,15 +30,29 @@ var SavePanelOptions = function()
 				presets: Group { \
 				}, \
 				buttons: Group { \
-					alignChildren: 'row', \
-					create: Button { text: 'New' }, \
-					remov: Button { text: 'Remove' }, \
+					create: Button { \
+						preferredSize: [30, 23], \
+						text: '+' \
+					}, \
+					remov: Button { \
+						preferredSize: [30, 23], \
+						text: '-' \
+					}, \
+					copyGroup: Group { \
+						margins: [100, 0, 0 ,0], \
+						orientation: 'row', \
+						preferredSize: [130, 23], \
+						copy: Button { \
+							preferredSize: [50, 23], \
+							text: 'Copy' \
+						}, \
+					}, \
 				} \
 			}\
 			editPreset: Panel { \
 				preferredSize: [540, 20], \
 				alignChildren: 'left', \
-				text: 'Create / Edit preset', \
+				text: 'Edit preset', \
 				g1: Group { \
 					orientation: 'row', \
 					margins: [0, 0, 0 ,0], \
@@ -141,7 +153,7 @@ var SavePanelOptions = function()
 					g: Group { \
 						orientation: 'column', \
 						alignChildren: 'right', \
-						margins: [415, 0, 0, 0], \
+						margins: [440, 0, 0, 0], \
 						g: Group { \
 							orientation: 'row', \
 							save: Button { text: 'Save' }, \
@@ -165,15 +177,15 @@ var SavePanelOptions = function()
 
 }
 
-SavePanelOptions.prototype.createPreset = function()
+SavePanelOptions.prototype.presetFromSettings = function()
 {
-	var panel, preset
-
-	panel  = this.w.mainGroup.editPreset;
-	action = {
-		type: SP_NOACTION,
-		args: [],
-	};
+	var panel  = this.w.mainGroup.editPreset
+	  , preset = null
+	  , action = {
+			type: SP_NOACTION,
+			args: [],
+		}
+	;
 
 	if (spActionToString(SP_RESIZETOFIT) == panel.action.dropdown.selection.text) {
 		action = {
@@ -209,27 +221,16 @@ SavePanelOptions.prototype.createPreset = function()
 		return false;
 	}
 
-	for (i in this.presets)
-		if (this.presets[i].name == preset.name && i != panel.index) {
-			alert('You must enter a unique name.');
-			return false;
-		}
-
-
 	return preset;
 }
 
 SavePanelOptions.prototype.setupUi = function()
 {
-	var self, item, items, text, panel, listPanel, presets, smallFont, actions;
-
-	self       = this;
-	panel      = self.w.mainGroup.editPreset;
-	listPanel  = self.w.mainGroup.savedPresets;
-	//presets    = self.settings.presets;
-	presets    = self.presets;
-	smallFont  = ScriptUI.newFont(this.w.graphics.font.name, ScriptUI.FontStyle.REGULAR, 10);
-	actions    = [SP_NOACTION, SP_RESIZETOFIT, SP_CUSTOMACTION];
+	var panel      = this.w.mainGroup.editPreset
+	  , listPanel  = this.w.mainGroup.savedPresets
+	  , presets    = this.presets
+	  , smallFont  = ScriptUI.newFont(this.w.graphics.font.name, ScriptUI.FontStyle.REGULAR, 10)
+	  , actions    = [SP_NOACTION, SP_RESIZETOFIT, SP_CUSTOMACTION];
 
 	listPanel.list = listPanel.presets.add(
 		"ListBox { \
@@ -242,42 +243,42 @@ SavePanelOptions.prototype.setupUi = function()
 		}"
 	);
 
-	for (i in actions)
-		self.w.mainGroup.editPreset.action.dropdown.add('item', spActionToString(actions[i]));
+	for (var i in actions)
+		this.w.mainGroup.editPreset.action.dropdown.add('item', spActionToString(actions[i]));
 
-	for (i in presets)
-		self.addPreset(presets[i]);
+	for (var i in presets)
+		this.addPreset(presets[i]);
 
 	// Set small font for help label.
-	self.w.mainGroup.editPreset.g2.pathGroup.g.help.graphics.font 
-		= self.w.mainGroup.editPreset.g1.nameGroup.g.help.graphics.font 
+	this.w.mainGroup.editPreset.g2.pathGroup.g.help.graphics.font 
+		= this.w.mainGroup.editPreset.g1.nameGroup.g.help.graphics.font 
 		= smallFont;
 
 	panel.quality.slider.enabled    = panel.saveTypes.jpeg.value || panel.saveTypes.webjpeg.value;
 	panel.quality.e.enabled         = panel.saveTypes.jpeg.value || panel.saveTypes.webjpeg.value;
 	panel.action.dropdown.selection = panel.action.dropdown.items[0];
 
-	self.setupEvents();
+	this.setupEvents();
 
 	listPanel.list.selection        = 0;
-	panel.filename.s2.text          = self.getFilename();
+	panel.filename.s2.text          = this.getFilename();
 	panel.quality.e.text            = 10;
 	panel.quality.slider.value      = panel.quality.e.text;
-	panel.quality.e.notify('onChange');;
+	panel.quality.e.notify('onChange');
 
 	this.w.layout.layout(true);
 }
 
 SavePanelOptions.prototype.getFilename = function()
 {
-	var self, types, regex, name, ext;
-
 	if (documents.length < 1)
 		return '';
 
-	self  = this;
-	types = self.w.mainGroup.editPreset.saveTypes;
-	ext   = 'jpg';
+	var types = this.w.mainGroup.editPreset.saveTypes
+	  , ext   = 'jpg'
+	  , regex = this.w.mainGroup.editPreset.filename.e.text
+	  , name  = sp.basename(activeDocument.name).substr(0, 254)
+	;
 
 	if (types.jpeg.value || types.webjpeg.value)
 		ext = 'jpg';
@@ -286,55 +287,84 @@ SavePanelOptions.prototype.getFilename = function()
 	else if (types.png.value)
 		ext = 'png';
 
-	name  = sp.basename(activeDocument.name).substr(0, 254);
-	regex = self.w.mainGroup.editPreset.filename.e.text;
-
 	return regex.replace('$name', name) + '.' + ext;
 }
 
 SavePanelOptions.prototype.setupEvents = function()
 {
-	var self, editPreset;
-	
-	self       = this;
-	panel      = self.w.mainGroup.editPreset;
-	listPanel  = self.w.mainGroup.savedPresets;
+	var self      = this
+	  , panel     = self.w.mainGroup.editPreset
+	  , listPanel = self.w.mainGroup.savedPresets
+	;
 
-	panel.action.dropdown.onChange          = self.changeAction;
-	panel.g1.nameGroup.e.onChange           = function(e) { self.changed(); };
-	panel.g1.headingGroup.e.onChange        = function(e) { self.changed(); };
-	panel.g2.pathGroup.e.onChange           = function(e) { self.changed(); };
-	panel.g2.browse.onClick                 = function(e) { self.changed(); panel.g2.pathGroup.e.text   = (f = Folder.selectDialog('Please select a directory.')) == null ? '' : f.fsName; };
-	panel.closeWhenSaved.c.onClick          = function(e) { self.changed(); };
-	panel.overwrite.c.onClick               = function(e) { self.changed(); };
-	panel.filename.e.onChanging             = function(e) { self.changed(); };
-	panel.saveTypes.psd.onClick             = function(e) { self.changed(); };
-	panel.saveTypes.png.onClick             = function(e) { self.changed(); };
-	panel.saveTypes.jpeg.onClick            = function(e) { self.changed(); panel.quality.e.enabled     = panel.quality.slider.enabled = this.value || panel.saveTypes.webjpeg.value; };
-	panel.saveTypes.webjpeg.onClick         = function(e) { self.changed(); panel.quality.e.enabled     = panel.quality.slider.enabled = this.value || panel.saveTypes.jpeg.value; };
-	panel.quality.slider.onChange           = function(e) { self.changed(); panel.quality.e.text        = Math.round(this.value); };
-	panel.quality.slider.onChanging         = function(e) { self.changed(); panel.quality.e.text        = Math.round(this.value); };
-	panel.quality.e.onChange                = function(e) { self.changed(); panel.quality.slider.value  = Math.round(Number(this.text)); };
-	panel.buttonGroup.g.g.save.onClick      = function(e) {
+	panel.action.dropdown.onChange   = self.changeAction;
+	panel.g1.nameGroup.e.onChange    = function(e) { self.changed(); };
+	panel.g1.headingGroup.e.onChange = function(e) { self.changed(); };
+	panel.g2.pathGroup.e.onChange    = function(e) { self.changed(); };
+	panel.g2.browse.onClick          = function(e) { self.changed(); panel.g2.pathGroup.e.text = (f = Folder.selectDialog('Please select a directory.')) == null ? '' : f.fsName; };
+	panel.closeWhenSaved.c.onClick   = function(e) { self.changed(); };
+	panel.overwrite.c.onClick        = function(e) { self.changed(); };
+	panel.filename.e.onChanging      = function(e) { self.changed(); };
+	panel.saveTypes.psd.onClick      = function(e) { self.changed(); };
+	panel.saveTypes.png.onClick      = function(e) { self.changed(); };
+	panel.saveTypes.jpeg.onClick     = function(e) { self.changed(); panel.quality.e.enabled    = panel.quality.slider.enabled = this.value || panel.saveTypes.webjpeg.value; };
+	panel.saveTypes.webjpeg.onClick  = function(e) { self.changed(); panel.quality.e.enabled    = panel.quality.slider.enabled = this.value || panel.saveTypes.jpeg.value; };
+	panel.quality.slider.onChange    = function(e) { self.changed(); panel.quality.e.text       = Math.round(this.value); };
+	panel.quality.slider.onChanging  = function(e) { self.changed(); panel.quality.e.text       = Math.round(this.value); };
+	panel.quality.e.onChange         = function(e) { self.changed(); panel.quality.slider.value = Math.round(Number(this.text)); };
+
+	panel.buttonGroup.g.g.save.onClick = function(e)
+	{
 		self.changed();
 		if (self.presets.length == 0)
 			listPanel.buttons.create.notify('onClick');
 			
 		panel.buttonGroup.s.visible = self.updatePreset();
 	};
-	listPanel.buttons.create.onClick        = function(e) {
+
+	listPanel.buttons.create.onClick = function(e)
+	{
+		var defaultPreset = {
+			heading: 'Default',
+			name: 'New save preset',
+			path: '',
+			outputFormats: {
+				jpg: false,
+				webjpg: false,
+				png: false,
+				psd: false,
+			},
+			jpegQuality: 10,
+			close: false,
+			overwrite: true,
+			filename: '$name',
+			action: {
+				type: SP_NOACTION,
+				args: [],
+			}
+		};
+
 		self.changed();
 		panel.index = listPanel.list.items.length;
-		self.addPreset(self.createPreset());
+		self.addPreset(defaultPreset);
 		listPanel.list.selection = listPanel.list.items.length - 1;
 		panel.buttonGroup.g.g.save.notify('onClick');
 	};
+
+	listPanel.buttons.copyGroup.copy.onClick = function(e)
+	{
+		self.changed();
+		panel.index = listPanel.list.items.length;
+		self.addPreset(self.presetFromSettings());
+		listPanel.list.selection = listPanel.list.items.length - 1;
+		panel.buttonGroup.g.g.save.notify('onClick');
+	}
 
 	listPanel.list.onChange                 = function(e) { self.redrawPreset(self.presets[listPanel.list.selection.index]); self.changed(); };
 	listPanel.buttons.remov.onClick         = function(e) { self.removePreset(self.currentPreset); self.changed(); };
 	self.w.buttonGroup.cancelButton.onClick = function(e) { self.w.close(2); };
 
-	self.w.buttonGroup.okButton.onClick     = function(e)
+	self.w.buttonGroup.okButton.onClick = function(e)
 	{
 		sp.savePresets(self.presets);
 		self.serializeInterface();
@@ -356,13 +386,11 @@ SavePanelOptions.prototype.changed = function()
 
 SavePanelOptions.prototype.addPreset = function(preset)
 {
-	var list, item;
-
 	if (!preset)
 		return;
 
-	list = this.w.mainGroup.savedPresets.list;
-	item = list.add('item', this.getListItemName(preset.name, preset.heading));
+	var list = this.w.mainGroup.savedPresets.list
+	  , item = list.add('item', this.getListItemName(preset.name, preset.heading));
 
 	this.presets[item.index] = preset;
 }
@@ -374,15 +402,13 @@ SavePanelOptions.prototype.getListItemName = function(name, heading)
 
 SavePanelOptions.prototype.redrawPreset = function(preset)
 {
-	var self, panel;
-
 	if (!preset.name)
 		return;
 
-	self                          = this;
-	self.currentPreset            = preset;
-	panel                         = self.w.mainGroup.editPreset;
-	panel.index                   = self.w.mainGroup.savedPresets.list.selection.index;
+	var panel = this.w.mainGroup.editPreset;
+
+	this.currentPreset            = preset;
+	panel.index                   = this.w.mainGroup.savedPresets.list.selection.index;
 	panel.g1.headingGroup.e.text  = preset.heading;
 	panel.g1.nameGroup.e.text     = preset.name;
 	panel.g2.pathGroup.e.text     = preset.path;
@@ -415,11 +441,11 @@ SavePanelOptions.prototype.redrawPreset = function(preset)
 
 SavePanelOptions.prototype.changeAction = function(e)
 {
-	var w, container, actionArgs;
+	var w          = this.parent.parent.parent.parent
+	  , container  = w.mainGroup.editPreset.action
+	  , actionArgs = null
+	;
 
-	w                                      = this.parent.parent.parent.parent;
-	container                              = w.mainGroup.editPreset.action;
-	actionArgs                             = null;
 	container.parent.buttonGroup.s.visible = false;
 
 	if (container.actionArgs) {
@@ -468,84 +494,74 @@ SavePanelOptions.prototype.changeAction = function(e)
 
 SavePanelOptions.prototype.updatePreset = function()
 {
-	var self, list, preset;
-
-	self   = this;
-	list   = self.w.mainGroup.savedPresets.list;
-	preset = self.createPreset();
+	var list   = this.w.mainGroup.savedPresets.list
+	  , preset = this.presetFromSettings()
+	;
 
 	if (!preset)
 		return false;
 
 	if (list.selection) {
-		list.selection.text = self.getListItemName(preset.name, preset.heading);
-		self.presets[list.selection.index] = preset;
+		list.selection.text = this.getListItemName(preset.name, preset.heading);
+		this.presets[list.selection.index] = preset;
 	}
 
-	sp.savePresets(self.presets);
+	sp.savePresets(this.presets);
 
 	return true;
 }
 
 SavePanelOptions.prototype.removePreset = function(preset)
 {
-	var self, list, i;
-
-	self = this;
-	list = self.w.mainGroup.savedPresets.list;
+	var list = this.w.mainGroup.savedPresets.list
+	  , i    = list.selection.index
+	;
 
 	if (null == list.selection)
 		return;
 
 	// Remove preset from ui.
-	i = list.selection.index;
 	list.remove(list.selection);
-	list.selection = list.items[i];
+	list.selection = list.items[i - 1];
 
 	// Remove preset from data structure.
-	for (i in self.presets)
-		if (preset.name == self.presets[i].name) {
-			self.presets.splice(i, 1);
-			break;
-		}
+	this.presets.splice(i, 1);
 
 	if (null != list.selection)
-		self.currentPreset = self.presets[list.selection.index];
+		this.currentPreset = this.presets[list.selection.index];
 
 	// Update ui with blank preset.
 	if (null == list.selection)
-		self.redrawPreset(sp.preset());
+		this.redrawPreset(sp.preset());
 }
 
 SavePanelOptions.prototype.serializeInterface = function()
 {
-	var script, file, preset, html, grouped, scriptLink;
+	var script = new File($.fileName)
+	  , file   = new File(sp.presetsFolder.fullName + '/buttons.html')
+	  , html    = ''
+	  , grouped = []
+	;
 
-	self    = this;
-	script  = new File($.fileName);
-	file    = new File(sp.presetsFolder.fullName + '/buttons.html');
-	html    = '';
-	grouped = [];
-
-	for (i in self.presets)
-		if (self.presets[i].heading in grouped)
-			grouped[self.presets[i].heading].push({ data: self.presets[i], index: i });
+	for (var i in this.presets)
+		if (this.presets[i].heading in grouped)
+			grouped[this.presets[i].heading].push({ data: this.presets[i], index: i });
 		else
-			grouped[self.presets[i].heading] = [{ data: self.presets[i], index: i }];
+			grouped[this.presets[i].heading] = [{ data: this.presets[i], index: i }];
 
-	for (key in grouped) {
+	for (var key in grouped) {
 		html += '<div class="subpanel expanded">\n';
 		html += '<p>' + key + '</p>\n';
 		html += '<div class="buttons">\n';
-		for (i in grouped[key]) {
+		for (var i in grouped[key]) {
 
-			preset = grouped[key][i];
+			var preset = grouped[key][i]
+			  , scriptLink = ''
+			;
 
 			if (13 > parseFloat(app.version))
 				// CS5 => use script link.
 				scriptLink = 'href="adobe://photoshop.cs5/Scripts/Save Panel Preset ' + preset.index + '" ';
-			else
-				scriptLink = '';
 
 			html  += '<span class="btn"><a class="save" ' + scriptLink + 'data-preset="\'' + Json.encode(preset.data).replace(/"/g, '&quot;') + '">';
 			html  += preset.data.name.replace(/\s/g, '&nbsp;') + '</a></span>\n';
