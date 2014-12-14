@@ -69,11 +69,11 @@ var SavePanelOptions = function()
 						margins: [0, 14, 0 ,0], \
 						orientation: 'column', \
 						alignChildren: 'left', \
-						e: EditText { characters: 40, }, \
+						e: EditText { characters: 50, }, \
 						g: Group { \
 							margins: [0, -6, 0 ,0], \
 							preferredSize: [100, 5], \
-							help: StaticText { text: 'Absolute or relative.' }, \
+							help: StaticText { text: 'Absolute or relative path. Leave empty (or use \".\") to save in the same directory.' }, \
 						}, \
 					}, \
 					browse: Button { text: 'Browse...' }, \
@@ -204,10 +204,8 @@ SavePanelOptions.prototype.createPreset = function()
 		action: action,
 	};
 
-	if ('' == preset.heading
-			|| '' == preset.name
-			|| '' == preset.path) {
-		alert('You must specify at least \'name\', \'heading\' and \'directory\'');
+	if ('' == preset.heading || '' == preset.name) {
+		alert('You must specify at least \'name\' and \'heading\'');
 		return false;
 	}
 
