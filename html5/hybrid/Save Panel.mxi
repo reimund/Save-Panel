@@ -2,7 +2,7 @@
 <macromedia-extension
 	id="Save Panel"
 	name="Save Panel"
-	requires-restart="true"
+	requires-restart="false"
 	icon="icon.png"
 	version="1.1.0">
 
