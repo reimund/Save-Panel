@@ -1,7 +1,6 @@
 #!/bin/zsh
-rm -f ./build/html5panel.zxp \
-&&  zxpsigncmd -sign ./dist ./build/html5panel.zxp lumens.p12 $1 -tsa https://timestamp.geotrust.com/tsa \
-&& open ./build/html5panel.zxp
-
-#&& rm -f ../savepanel_cc.zxp \
-#&& zxpsigncmd -sign hybrid ../tychpanel_cc.zxp lumens.p12 $1 -tsa https://timestamp.geotrust.com/tsa \
+rm -f ./hybrid/savepanel.zxp \
+rm -f ./build/savepanel.zxp \
+&& zxpsigncmd -sign ./dist ./hybrid/savepanel.zxp lumens.p12 $1 -tsa https://timestamp.geotrust.com/tsa \
+&& zxpsigncmd -sign ./hybrid ./build/savepanel.zxp lumens.p12 $1 -tsa https://timestamp.geotrust.com/tsa \
+&& open ./build/savepanel.zxp
