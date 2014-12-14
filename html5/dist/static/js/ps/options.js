@@ -88,15 +88,19 @@ var SavePanelOptions = function()
 				sep2: Panel { preferredSize: [540, 1] }, \
 				saveTypes: Group { \
 					jpeg: Checkbox { \
+						preferredSize: [50, 16], \
 						text: 'Jpeg', \
 					}, \
 					webjpeg: Checkbox { \
+						preferredSize: [140, 16], \
 						text: 'Jpeg (save for web)', \
 					}, \
 					png: Checkbox { \
+						preferredSize: [50, 16], \
 						text: 'Png', \
 					}, \
 					psd: Checkbox { \
+						preferredSize: [50, 16], \
 						text: 'Psd', \
 					}, \
 					margins: [0, 20, 0, 0], \
