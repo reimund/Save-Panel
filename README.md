@@ -1,7 +1,7 @@
 Save Panel
 ==========
 
-Version 1.0.5 - Thur 9 Jan 2014
+Version 1.1.0 - Mon 15 Dec 2014
 
 by Reimund Trost <reimund@code7.se>  
 Website <http://lumens.se/tools/savepanel/>
@@ -25,19 +25,35 @@ Features
 - Apply custom action before saving.
 - Option to automatically close the file after it's been saved.
 - Categorise similar buttons under a common heading.
-- Photoshop CS5, CS6 and CC support.
+- Photoshop CS5, CS6, CC and CC 2014 support.
+  
+Note that the new html panel will not work in earlier versions than CC 2014.
+For CS5-CC, use the older Configurator based panel.
 
 
-Installation
-------------
-1.	Copy __scripts/Save Panel__ to __<your photoshop directory>/Presets/Scripts__.
-2.	Open __Save Panel <version>.gpc__ in Adobe Configurator and export it to
+Installation (CC 2014)
+----------------------
+1.	Change to the __html5__ directory.
+2.  Run ./package <password> (you will need to replace lumens.p12 with a self-signing certificate).
+3.	Install build/savepanel.zxp with Adobe Extension Manager.
+
+Installation (pre CC 2014)
+--------------------------
+1.	Copy __configurator/scripts/Save Panel__ to __<your photoshop directory>/Presets/Scripts__.
+2.	Open __configurator/Save Panel <version>.gpc__ in Adobe Configurator and export it to
 	__<your photoshop directory>/Plug-ins/Panels__.
 3.	Enable the panel via __Window/Extensions/Save Panel__ in Photoshop.
 
 
 Changelog
 =========
+
+1.1.0
+-----
+- Ported Configurator based panel to html panel.
+- CC 2014 support.
+- Allow dupicate preset names.
+- Various changes to the options dialog. 
 
 1.0.5
 -----
