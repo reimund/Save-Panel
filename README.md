@@ -33,8 +33,8 @@ For CS5-CC, use the older Configurator based panel.
 
 Installation (CC 2014)
 ----------------------
-1.	Change to the __html5__ directory.
-2.  Run ./package <password> (you will need to replace lumens.p12 with a self-signing certificate).
+1.	From the terminal, change directory to the __html5__ directory.
+2.  Run `./package <your_password>` (you will need to replace lumens.p12 with a self-signing certificate).
 3.	Install build/savepanel.zxp with Adobe Extension Manager.
 
 Installation (pre CC 2014)
