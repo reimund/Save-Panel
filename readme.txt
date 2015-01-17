@@ -8,7 +8,7 @@ Website <http://lumens.se/tools/savepanel/>
 Photoshop CC 2014
 -----------------
 
-1. Open 'cc 2014/savepanel-x.y.z.zxp' in Adobe Extension Manager.
+1. Open savepanel.zxp in Adobe Extension Manager.
 2. Install by following the steps shown.
 3. Enjoy.
 
@@ -20,7 +20,7 @@ Panel. This is included for compatibility with PS CS5, PS CS6 and PS CC.
 Photoshop CS 6 / CC
 -------------------
 
-1. Open 'cs cc/savepanel-1.0.4.zxp' in Adobe Extension Manager.
+1. Open 'CS CC/savepanel-1.0.4.zxp' in Adobe Extension Manager.
 2. Install by following the steps shown.
 3. Enjoy.
 
@@ -28,7 +28,7 @@ Photoshop CS 6 / CC
 Photoshop CS 5
 --------------
 
-1. Open 'cs cc/savepanel-1.0.4.zxp' in Adobe Extension Manager.
+1. Open 'CS CC/savepanel-1.0.4.zxp' in Adobe Extension Manager.
 2. Install by following the steps shown.
 3. Follow steps 3-5 under Manual installation, Photoshop CS5.
 
@@ -44,7 +44,7 @@ Before installing, make sure any old Save Panel files have been removed.
 Photoshop CS 6 / CC
 -------------------
 
-1. Rename 'cs cc/savepanel-1.0.4.zxp' to have a .zip extension.
+1. Rename 'CS CC/savepanel-1.0.4.zxp' to have a .zip extension.
 2. Unzip the file.
 3. Copy the Save Panel directory (residing in the "panels/cs6" directory) to 
    <Photoshop>/Plug-ins/Panels.
@@ -56,7 +56,7 @@ Photoshop CS 5
 
 The steps are similar for CS5, but you need a few extra steps:
 
-1. Rename 'cs cc/savepanel-1.0.4.zxp' to have a .zip extension.
+1. Rename 'CS CC/savepanel-1.0.4.zxp' to have a .zip extension.
 2. Unzip the file.
 3. Copy the Save Panel directory (residing in the "panels/cs5" directory) to 
    <Photoshop>/Plug-ins/Panels.
