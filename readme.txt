@@ -5,20 +5,30 @@ by Reimund Trost <reimund@code7.se>
 Website <http://lumens.se/tools/savepanel/>
 
 
-Automatic installation
-======================
+Photoshop CC 2014
+-----------------
+
+1. Open 'cc 2014/savepanel-x.y.z.zxp' in Adobe Extension Manager.
+2. Install by following the steps shown.
+3. Enjoy.
+
+
+
+The following instructions are for the old Configurator based version of Save
+Panel. This is included for compatibility with PS CS5, PS CS6 and PS CC.
 
 Photoshop CS 6 / CC
 -------------------
 
-1. Open savepanel.zxp in Adobe Extension Manager.
+1. Open 'cs cc/savepanel-1.0.4.zxp' in Adobe Extension Manager.
 2. Install by following the steps shown.
 3. Enjoy.
+
 
 Photoshop CS 5
 --------------
 
-1. Open savepanel.zxp in Adobe Extension Manager.
+1. Open 'cs cc/savepanel-1.0.4.zxp' in Adobe Extension Manager.
 2. Install by following the steps shown.
 3. Follow steps 3-5 under Manual installation, Photoshop CS5.
 
@@ -31,14 +41,14 @@ Manual installation
 
 Before installing, make sure any old Save Panel files have been removed.
 
-
 Photoshop CS 6 / CC
 -------------------
 
-1. Copy the Save Panel directory (residing in the "panels/cs6" directory) to 
+1. Rename 'cs cc/savepanel-1.0.4.zxp' to have a .zip extension.
+2. Unzip the file.
+3. Copy the Save Panel directory (residing in the "panels/cs6" directory) to 
    <Photoshop>/Plug-ins/Panels.
-
-2. Run Photoshop and show the panel by going to Window/Extensions/Save Panel.
+4. Run Photoshop and show the panel by going to Window/Extensions/Save Panel.
 
 
 Photoshop CS 5
@@ -46,19 +56,17 @@ Photoshop CS 5
 
 The steps are similar for CS5, but you need a few extra steps:
 
-1. Copy the Save Panel directory (residing in the "panels/cs5" directory) to 
+1. Rename 'cs cc/savepanel-1.0.4.zxp' to have a .zip extension.
+2. Unzip the file.
+3. Copy the Save Panel directory (residing in the "panels/cs5" directory) to 
    <Photoshop>/Plug-ins/Panels.
-
-2. Copy the Save Panel directory (residing in the "scripts" directory) to
+4. Copy the Save Panel directory (residing in the "scripts" directory) to
    <Photoshop CS5>/Presets/Scripts.
-
-3. Start Photoshop as administrator.
-
-4. Run the 'Save Panel CS5 Fix' script from File > Scripts > Save Panel CS5 Fix
+5. Start Photoshop as administrator.
+6. Run the 'Save Panel CS5 Fix' script from File > Scripts > Save Panel CS5 Fix
    Note that this step will fail if you don't run Photoshop with administrator
    rights (read more below).
-
-5. Restart Photoshop and show the panel by going to Window/Extensions/Save Panel.
+7. Restart Photoshop and show the panel by going to Window/Extensions/Save Panel.
 
 
 Notes on running with administrator rights
