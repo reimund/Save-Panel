@@ -3,7 +3,7 @@ node_modules
 lumens.p12
 html5/build
 html5/hybrid/*.zxp
-zxp
+builds
 docs
 configurator/upload
 
