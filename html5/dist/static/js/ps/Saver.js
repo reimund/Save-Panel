@@ -141,6 +141,10 @@ sp.Saver.prototype.getOriginalDir = function()
 
 		var presetDirs = presets[i].path.split(/[\/\\]/);
 		var realDirs = docDir.fullName.split(/[\/\\]/);
+
+		if ('.' === presetDirs[0])
+			presetDirs = presetDirs.splice(1);
+
 		realDirs.splice(0, realDirs.length - presetDirs.length);
 
 		if (sp.arraysEqual(presetDirs, realDirs)) {
