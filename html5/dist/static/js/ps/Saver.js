@@ -98,7 +98,8 @@ sp.Saver.prototype.getDestDir = function(targetPath)
 	var basePath;
 
 	try {
-		if ('psd' == sp.extension(activeDocument.fullName.name))
+		// XXX: Let the user decide this with an option in the preset.
+		if ('psd' === sp.extension(activeDocument.fullName.name) || 'full' === activeDocument.fullName.parent.name)
 			basePath = this.getOriginalDir(activeDocument.path);
 		else
 			basePath = activeDocument.path;
