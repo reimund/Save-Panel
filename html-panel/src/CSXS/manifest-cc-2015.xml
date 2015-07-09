@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<ExtensionManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExtensionBundleId="Save Panel" ExtensionBundleVersion="1.1.0" Version="5.0">
+<ExtensionManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExtensionBundleId="Save Panel" ExtensionBundleVersion="1.2.0" Version="6.0">
     <ExtensionList>
-        <Extension Id="se.lumens.SavePanel" Version="1.0"/>
+        <Extension Id="se.lumens.SavePanel" Version="1.2.0"/>
     </ExtensionList>
     <ExecutionEnvironment>
         <HostList>
-            <Host Name="PHSP" Version="15.0"/>
-            <Host Name="PHXS" Version="15.0"/>
+            <Host Name="PHXS" Version="[16.0,16.9]"/>
         </HostList>
         <LocaleList>
             <Locale Code="All"/>
         </LocaleList>
         <RequiredRuntimeList>
-            <RequiredRuntime Name="CSXS" Version="5.0"/>
+            <RequiredRuntime Name="CSXS" Version="6.0"/>
         </RequiredRuntimeList>
     </ExecutionEnvironment>
     <DispatchInfoList>

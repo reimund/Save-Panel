@@ -33,7 +33,7 @@ jQuery(document).ready(function($) {
 	}
 
 	$('.btn.options')
-		.on('click', function() { evalFile(extensionRoot + 'static/js/ps/options.js'); });
+		.on('click', function() { evalFile(extensionRoot + 'js/photoshop/options.js'); });
 
 
 	$('div.actions').on('click', 'div.subpanel p', function() {
@@ -73,7 +73,7 @@ jQuery(document).ready(function($) {
 
 			var presetJsonStr = $(btn).data('preset').substr(1);
 
-			call('save', [[presetJsonStr]], 'static/js/ps/interact.js', function(jsonResult) {
+			call('save', [[presetJsonStr]], 'js/photoshop/interact.js', function(jsonResult) {
 				var result = JSON.parse(jsonResult);
 
 				statusbar.find('p').empty();
@@ -88,13 +88,12 @@ jQuery(document).ready(function($) {
     cs.addEventListener('com.adobe.csxs.events.ThemeColorChanged', changeTheme); 
     
 	changeTheme();
-
 });
 
 function update(callback)
 {
 	try {
-		call('getSettingsPath', [], 'static/js/ps/interact.js', function(settingsRoot) {
+		call('getSettingsPath', [], 'js/photoshop/interact.js', function(settingsRoot) {
 
 			var url = 'file:///' + settingsRoot + 'buttons.html?' + Math.random().toString(36).substring(8);
 
@@ -215,7 +214,7 @@ function serializeUi()
 			collapsed.push($(this).text());
 	});
 	
-	call('serializeUi', [[collapsed]], 'static/js/ps/interact.js');
+	call('serializeUi', [[collapsed]], 'js/photoshop/interact.js');
 }
 
 function call(fun, args, path, callback)
@@ -287,4 +286,3 @@ function toHex(color)
 
     return '#' + red.toString(16) + green.toString(16) + blue.toString(16);
 }
-

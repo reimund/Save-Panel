@@ -1,0 +1,28 @@
+{
+  "name": "save-panel",
+  "version": "1.2.0",
+  "homepage": "https://github.com/reimund/Save-Panel",
+  "authors": [
+    "Reimund Trost <reimund@code7.se>"
+  ],
+  "description": "Optimize file saving in Adobe Photshop.",
+  "main": "gulpfile.js",
+  "keywords": [
+    "save",
+    "panel",
+    "photoshop"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.7.*",
+    "adobe-cep": "~6.0.0"
+  }
+}

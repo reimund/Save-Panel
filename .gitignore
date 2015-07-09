@@ -1,9 +1,10 @@
 .DS_Store
 node_modules
-lumens.p12
-html5/build
-html5/hybrid/*.zxp
+bower_components
+*.p12
 builds
+html-panel/dist
+html-panel/src/styles/app.css
+dist/CC 2014
+dist/CC 2015
 docs
-configurator/upload
-

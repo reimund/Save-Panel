@@ -1,0 +1,5 @@
+#!/bin/zsh
+cd dist
+zip -r savepanel.zip CC\ 2014 CC\ 2015 CS5-CS6 readme.txt
+mv savepanel.zip ..
+cd ..

@@ -1,6 +1,0 @@
-#!/bin/zsh
-rm -f ./hybrid/savepanel.zxp \
-rm -f ./build/savepanel.zxp \
-&& zxpsigncmd -sign ./dist ./hybrid/savepanel.zxp lumens.p12 $1 -tsa https://timestamp.geotrust.com/tsa \
-&& zxpsigncmd -sign ./hybrid ./build/savepanel.zxp lumens.p12 $1 -tsa https://timestamp.geotrust.com/tsa \
-&& open ./build/savepanel.zxp

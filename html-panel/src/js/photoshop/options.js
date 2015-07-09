@@ -485,7 +485,7 @@ SavePanelOptions.prototype.changeAction = function(e)
 			for (var i in actionSets[this.selection.index].children)
 				actionArgs.actions.add('item', actionSets[this.selection.index].children[i].name);
 		}
-		actionArgs.actions.onChange = function() { w.mainGroup.editPreset.buttonGroup.s.visible = false; };
+		actionArgs.actions.onChange = function() { w.mainGroup.editPreset.buttonGroup.s.visible = false; };
 		actionArgs.sets.notify('onChange');
 	}
 	container.actionArgs = actionArgs;
