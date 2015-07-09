@@ -31,11 +31,6 @@ Note that the new html panel will not work in earlier versions than CC 2014.
 For CS5-CC, use the older flash based panel.
 
 
-Installation (CC 2014)
-----------------------
-1.	From the terminal, change directory to the __html5__ directory.
-3.	Install build/savepanel.zxp with Adobe Extension Manager.
-
 Installation (CC 2014, CC 2015) - Html5 panel
 ---------------------------------------------
 
@@ -48,6 +43,7 @@ Installation (CC 2014, CC 2015) - Html5 panel
 3. Restart Photoshop.
 
 4. Enable the panel via __Window/Extensions/Tych Panel__ in Photoshop.
+
 
 Installation (pre CC 2014)
 --------------------------
